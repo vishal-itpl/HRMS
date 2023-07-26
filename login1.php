@@ -21,6 +21,27 @@
     }
   </style>
 </head>
+<? php 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  session_start();
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "hrms";
+  $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+  $email = $_POST["email"];
+  $username = $_POST["username"];
+  $password = $_POST["password"];
+
+
+  if (!$conn) {
+      die("Connection failed: " . mysqli_connect_error());
+      echo "OOPS Connecion failed!!!";
+  }
+}
+
+?>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
