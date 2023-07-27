@@ -8,6 +8,9 @@
   </script>
   <!-- Bootstrap 4 -->
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- jquery-validation -->
+<script src="./plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="./plugins/jquery-validation/additional-methods.min.js"></script>
   <!-- DataTables  & Plugins -->
 <script src="./plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="./plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

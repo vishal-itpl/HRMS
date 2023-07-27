@@ -43,7 +43,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <div> 
-                        <button type="button" class="btn btn-primary btn-sm text-right">ADD New Employee</button>
+                        <button type="button" class="btn btn-primary btn-sm text-right" onclick="window.location.href='add_new-employee.php';">ADD New Employee</button>
                     </div>
                       <br>
                   <tr>
