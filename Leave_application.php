@@ -61,42 +61,45 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Start Date</label>
-                                        <input type="date" name="start-date" class="form-control"
-                                            id="exampleInputStartdate1">
-                                    </div>
+                                        <label>Date range:</label>
 
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">End Date</label>
-                                        <input type="date" name="end-date" class="form-control"
-                                            id="exampleInputEnddate1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control float-right" id="reservation">
+                                        </div>
+                                        <!-- /.input group -->
                                     </div>
 
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea name="desc" class="form-control" rows="3" placeholder="Enter Description here..."></textarea>
+                                        <textarea name="desc" class="form-control" rows="3"
+                                            placeholder="Enter Description here..."></textarea>
                                     </div>
 
                                 </div>
-                                
+
                                 <div class=" text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                                 <br>
+                        </div>
+                        <!-- /.card-body -->
+                        </form>
+                    </div>
+                    <!-- /.card -->
                 </div>
-                <!-- /.card-body -->
-                </form>
-            </div>
-            <!-- /.card -->
-    </div>
-    <!--/.col (left) -->
-    <!-- right column -->
-    <div class="col-md-6">
+                <!--/.col (left) -->
+                <!-- right column -->
+                <div class="col-md-6">
 
-    </div>
-    <!--/.col (right) -->
-    </div>
-    <!-- /.row -->
+                </div>
+                <!--/.col (right) -->
+            </div>
+            <!-- /.row -->
     </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -110,6 +113,13 @@
                     alert("Form successful submitted!");
                 }
             });
+            //Date range picker
+            $('#reservation').daterangepicker({
+                locale: {
+                    format: 'DD/MM/YYYY'
+                }
+            })
+            
             $('#quickForm').validate({
                 rules: {
                     name: {

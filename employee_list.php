@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | DataTables</title>
-<?php include'./css/style.php'; ?>
+  <?php include './css/style.php'; ?>
 </head>
+
 <body class="hold-transition sidebar-mini">
 
-<?php include'nav-bar.php'; ?>
-<?php include'side-bar.php'; ?>
+  <?php include 'nav-bar.php'; ?>
+  <?php include 'side-bar.php'; ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -34,144 +36,145 @@
     <section class="content">
 
 
-            <div class="card">
-              <div class="card-header">
-                <h2 class="card-title">Employee List</h2>
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Employee List</h2>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+              <div>
+                <button type="button" class="btn btn-primary btn-sm text-right"
+                  onclick="window.location.href='add_new-employee.php';">ADD New Employee</button>
               </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                    <div> 
-                        <button type="button" class="btn btn-primary btn-sm text-right" onclick="window.location.href='add_new-employee.php';">ADD New Employee</button>
-                    </div>
-                      <br>
-                  <tr>
-                    <th>Sr No.</th>
-                    <th>Employee No.</th>
-                    <th>Employee Name</th>
-                    <th>Employee Address</th>
-                    <th>Email</th>
-                    <th>Mobile No.</th>
-                    <th>Action</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>1001</td>
-                    <td>Ravi Gupta
-                    </td>
-                    <td>Vikas Marg, Block G, Laxmi Nagar, New Delhi, 110092</td>
-                    <td> ravigupta@mymail.com</td>
-                    <td>9874563210</td>
-                    <td>
-                        <!-- Edit button -->
-                        <button type="button" class="btn btn-primary btn-sm">View
-                        <i class="fa-solid fa-eye"></i>
-                        
-                        </button>
-                        <button type="button" class="btn btn-primary btn-sm">Edit
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        </button>
-                        <!-- Delete button -->
-                        <button type="button" class="btn btn-danger btn-sm">Delete
-                        <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </td>
-                  </tr>
-                  <tr>
-                  <td>2</td>
-                  <td>1002</td>
-                    <td>Vijay Shah
-                    </td>
-                    <td>Navnil Marg, Block A, Chandni Nagar, New Delhi, 110094</td>
-                    <td> vijayshah@mymail.com</td>
-                    <td>9874563897</td>
-                    <td>
-                        <!-- Edit button -->
-                        <button type="button" class="btn btn-primary btn-sm">View
-                        <i class="fa-solid fa-eye"></i>
-                        
-                        </button>
-                        <button type="button" class="btn btn-primary btn-sm">Edit
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        </button>
-                        <!-- Delete button -->
-                        <button type="button" class="btn btn-danger btn-sm">Delete
-                        <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </td>
-                  </tr>
-                  <tr>
-                  <td>3</td>
-                    <td>1003</td>
-                    <td>Shailesh Rungta
-                    </td>
-                    <td>C-41, Vidya Marg, Janakpuri, New Delhi, 110092</td>
-                    <td> ravigupta@mymail.com</td>
-                    <td>9874563210</td>
-                    <td>
-                        <!-- Edit button -->
-                        <button type="button" class="btn btn-primary btn-sm">View
-                        <i class="fa-solid fa-eye"></i>
-                        
-                        </button>
-                        <button type="button" class="btn btn-primary btn-sm">Edit
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        </button>
-                        <!-- Delete button -->
-                        <button type="button" class="btn btn-danger btn-sm">Delete
-                        <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </td>
-                  </tr>
-                  <tr>
-                  <td>4</td>
-                  <td>1004</td>
-                    <td>Kaveri Singh
-                    </td>
-                    <td>104/90A (20) Sanjay Nagar,50 Ft.Road Jajmau, Kanpur, 208010</td>
-                    <td> kaverisingh@mymail.com</td>
-                    <td>8874663210</td>
-                    <td>
-                        <!-- Edit button -->
-                        <button type="button" class="btn btn-primary btn-sm">View
-                        <i class="fa-solid fa-eye"></i>
-                        
-                        </button>
-                        <button type="button" class="btn btn-primary btn-sm">Edit
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        </button>
-                        <!-- Delete button -->
-                        <button type="button" class="btn btn-danger btn-sm">Delete
-                        <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>1005</td>
-                    <td>Anjali Desai</td>
-                    <td>21, Gandhi Road, Hyderabad, Telangana, 500001</td>
-                    <td>anjali.desai@example.com</td>
-                    <td>+91 76543 21090</td>
-                    <td>
-                        <!-- Edit button -->
-                        <button type="button" class="btn btn-primary btn-sm">View
-                        <i class="fa-solid fa-eye"></i>
-                        
-                        </button>
-                        <button type="button" class="btn btn-primary btn-sm">Edit
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        </button>
-                        <!-- Delete button -->
-                        <button type="button" class="btn btn-danger btn-sm">Delete
-                        <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                <!-- <tr>
+              <br>
+              <tr>
+                <th>Sr No.</th>
+                <th>Employee No.</th>
+                <th>Employee Name</th>
+                <th>Employee Address</th>
+                <th>Email</th>
+                <th>Mobile No.</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>1001</td>
+                <td>Ravi Gupta
+                </td>
+                <td>Vikas Marg, Block G, Laxmi Nagar, New Delhi, 110092</td>
+                <td> ravigupta@mymail.com</td>
+                <td>9874563210</td>
+                <td>
+                  <!-- Edit button -->
+                  <button type="button" class="btn btn-primary btn-sm">View
+                    <i class="fa-solid fa-eye"></i>
+
+                  </button>
+                  <button type="button" class="btn btn-primary btn-sm">Edit
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <!-- Delete button -->
+                  <button type="button" class="btn btn-danger btn-sm">Delete
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>1002</td>
+                <td>Vijay Shah
+                </td>
+                <td>Navnil Marg, Block A, Chandni Nagar, New Delhi, 110094</td>
+                <td> vijayshah@mymail.com</td>
+                <td>9874563897</td>
+                <td>
+                  <!-- Edit button -->
+                  <button type="button" class="btn btn-primary btn-sm">View
+                    <i class="fa-solid fa-eye"></i>
+
+                  </button>
+                  <button type="button" class="btn btn-primary btn-sm">Edit
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <!-- Delete button -->
+                  <button type="button" class="btn btn-danger btn-sm">Delete
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>1003</td>
+                <td>Shailesh Rungta
+                </td>
+                <td>C-41, Vidya Marg, Janakpuri, New Delhi, 110092</td>
+                <td> ravigupta@mymail.com</td>
+                <td>9874563210</td>
+                <td>
+                  <!-- Edit button -->
+                  <button type="button" class="btn btn-primary btn-sm">View
+                    <i class="fa-solid fa-eye"></i>
+
+                  </button>
+                  <button type="button" class="btn btn-primary btn-sm">Edit
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <!-- Delete button -->
+                  <button type="button" class="btn btn-danger btn-sm">Delete
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>1004</td>
+                <td>Kaveri Singh
+                </td>
+                <td>104/90A (20) Sanjay Nagar,50 Ft.Road Jajmau, Kanpur, 208010</td>
+                <td> kaverisingh@mymail.com</td>
+                <td>8874663210</td>
+                <td>
+                  <!-- Edit button -->
+                  <button type="button" class="btn btn-primary btn-sm">View
+                    <i class="fa-solid fa-eye"></i>
+
+                  </button>
+                  <button type="button" class="btn btn-primary btn-sm">Edit
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <!-- Delete button -->
+                  <button type="button" class="btn btn-danger btn-sm">Delete
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>1005</td>
+                <td>Anjali Desai</td>
+                <td>21, Gandhi Road, Hyderabad, Telangana, 500001</td>
+                <td>anjali.desai@example.com</td>
+                <td>+91 76543 21090</td>
+                <td>
+                  <!-- Edit button -->
+                  <button type="button" class="btn btn-primary btn-sm">View
+                    <i class="fa-solid fa-eye"></i>
+
+                  </button>
+                  <button type="button" class="btn btn-primary btn-sm">Edit
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <!-- Delete button -->
+                  <button type="button" class="btn btn-danger btn-sm">Delete
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <!-- <tr>
                     <td>6</td>
                     <td>1006</td>
                     <td>Rahul Sharma</td>
@@ -228,44 +231,45 @@
                 <td>+91 76543 21095</td>
             </tr> -->
 
-                  </tbody>
-                  
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
+            </tbody>
+
+          </table>
         </div>
-        <!-- /.row -->
+        <!-- /.card-body -->
       </div>
-      <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+      <!-- /.card -->
+  </div>
+  <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
 
-<!-- jQuery -->
- <?php include './js/js.php'; ?> 
-<!-- Page specific script -->
-<script>
-  $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
+  <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery -->
+  <?php include './js/js.php'; ?>
+  <!-- Page specific script -->
+  <script>
+    $(function () {
+      $("#example1").DataTable();
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
     });
-  });
-</script>
+  </script>
 </body>
+
 </html>

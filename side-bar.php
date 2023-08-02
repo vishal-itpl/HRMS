@@ -39,7 +39,7 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                <i class="right fas fa-angle-left"></i>
+                <!-- <i class="right fas fa-angle-left"></i> -->
               </p>
             </a>
             <!-- <ul class="nav nav-treeview">
@@ -68,11 +68,11 @@
               
               <p>
                Attendance 
-                <i class="fas fa-angle-left right"></i>
+                <!-- <i class="fas fa-angle-left right"></i> -->
                 <span class="badge badge-info right">6</span>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <!-- <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="pages/layout/top-nav.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -121,14 +121,13 @@
                   <p>Collapsed Sidebar</p>
                 </a>
               </li>
-            </ul>
+            </ul> -->
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="leave_list.php" class="nav-link">
               <i class="nav-icon fa-solid fa-user-clock"></i>
               <p>
                 Leave Management
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <!-- <ul class="nav nav-treeview">
@@ -163,10 +162,10 @@
               <i class="nav-icon fa-solid fa-bars-progress"></i>
               <p>
                 Projects
-                <i class="fas fa-angle-left right"></i>
+                <!-- <i class="fas fa-angle-left right"></i> -->
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <!-- <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="pages/UI/general.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -215,17 +214,17 @@
                   <p>Ribbons</p>
                 </a>
               </li>
-            </ul>
+            </ul> -->
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fa-solid fa-wallet"></i>
               <p>
                 Payroll
-                <i class="fas fa-angle-left right"></i>
+                <!-- <i class="fas fa-angle-left right"></i> -->
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <!-- <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="pages/forms/general.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -250,7 +249,7 @@
                   <p>Validation</p>
                 </a>
               </li>
-            </ul>
+            </ul> -->
           </li>
 
           
