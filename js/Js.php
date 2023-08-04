@@ -49,3 +49,5 @@
   <script src="dist/js/demo.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="dist/js/pages/dashboard.js"></script>
+  <!-- Sweet Alert Cdn -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

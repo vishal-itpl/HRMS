@@ -1,0 +1,8 @@
+//CSS
+<?php include './css/style.php'; ?>
+//Nav-Bar
+<?php include 'nav-bar.php'; ?>
+//Side-Bar
+<?php include 'side-bar.php'; ?>
+//JS
+<?php include './js/js.php'; ?>
