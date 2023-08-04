@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | DataTables</title>
+  <title>Employee List</title>
   <?php include './css/style.php'; ?>
 </head>
 
@@ -67,10 +67,10 @@
                 </td>
                 <td>Vikas Marg, Block G, Laxmi Nagar, New Delhi, 110092</td>
                 <td> ravigupta@mymail.com</td>
-                <td>9874563210</td>
+                <td>+91 9874563210</td>
                 <td>
                   <!-- Edit button -->
-                  <button type="button" class="btn btn-primary btn-sm">View
+                  <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href = 'employee_info.php';">View
                     <i class="fa-solid fa-eye"></i>
 
                   </button>
@@ -90,7 +90,7 @@
                 </td>
                 <td>Navnil Marg, Block A, Chandni Nagar, New Delhi, 110094</td>
                 <td> vijayshah@mymail.com</td>
-                <td>9874563897</td>
+                <td>+91 9874563897</td>
                 <td>
                   <!-- Edit button -->
                   <button type="button" class="btn btn-primary btn-sm">View
@@ -113,7 +113,7 @@
                 </td>
                 <td>C-41, Vidya Marg, Janakpuri, New Delhi, 110092</td>
                 <td> ravigupta@mymail.com</td>
-                <td>9874563210</td>
+                <td>+91 9874563210</td>
                 <td>
                   <!-- Edit button -->
                   <button type="button" class="btn btn-primary btn-sm">View
@@ -136,7 +136,7 @@
                 </td>
                 <td>104/90A (20) Sanjay Nagar,50 Ft.Road Jajmau, Kanpur, 208010</td>
                 <td> kaverisingh@mymail.com</td>
-                <td>8874663210</td>
+                <td>+91 8874663210</td>
                 <td>
                   <!-- Edit button -->
                   <button type="button" class="btn btn-primary btn-sm">View
@@ -254,9 +254,9 @@
   <!-- ./wrapper -->
 
   <!-- jQuery -->
-  <?php include './js/js.php'; ?>
+  <?php include 'js/js.php'; ?>
   <!-- Page specific script -->
-  <script>
+  <!-- <script>
     $(function () {
       $("#example1").DataTable();
       $('#example2').DataTable({
@@ -289,7 +289,43 @@
             }
         })
     })
-  </script>
+  </script> -->
+  <script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+
+    // Add event listener only to the "Delete" buttons
+    $('.btn-danger').click(function () {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Deleted!',
+            'Your record has been deleted.',
+            'success'
+          )
+        }
+      });
+    });
+  });
+</script>
+
 </body>
 
 </html>

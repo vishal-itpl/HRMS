@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Employee Registration</title>
   <?php include './css/style.php'; ?>
   <style>
     .custom-card-header {
@@ -90,6 +90,16 @@
                       <label for="Name">Mobile No.</label>
                       <input name="number" type="text" class="form-control" maxlength="10"
                         placeholder="Enter Mobile No.">
+                    </div>
+                    <div class="form-group col-12">
+                      <label for="Name">Password</label>
+                      <input type="password" name="password" id="password" class="form-control"
+                        placeholder="Enter Password" maxlength="10">
+                    </div>
+                    <div class="form-group col-12">
+                      <label for="Name">Confirm Password</label>
+                      <input type="password" name="confirm_password" id="confirm_password" class="form-control"
+                        placeholder="Confirm Password" maxlength="10">
                     </div>
                     <div class="form-group col-12">
                       <label>Address</label>
@@ -186,9 +196,25 @@
       <!-- /.content -->
     </div>
   </div>
-
+  
   <?php include './js/js.php'; ?>
   <script>
+    function validateForm() {
+      var password = document.getElementById("password").value;
+      var confirm_password = document.getElementById("confirm_password").value;
+  
+      if (password.length < 8) {
+        alert("Password must be at least 8 characters long.");
+        return false;
+      }
+  
+      if (password !== confirm_password) {
+        alert("Passwords do not match.");
+        return false;
+      }
+  
+      return true;
+    }
     $(function () {
       $.validator.setDefaults({
         submitHandler: function () {
@@ -231,6 +257,9 @@
           position: {
             required: true
           },
+          empid: {
+            required: true
+          },
           emgname: {
             required: true
           },
@@ -249,11 +278,21 @@
           bankacctype: {
             required: true
           },
+          // password: {
+          //   required: true
+          // },
+          // confirm_password: {
+          //   required: true
+          // },
         },
         messages: {
           name: {
             required: "Please enter Name",
             name: "Please enter a valid Name"
+          },
+          empid: {
+            required: "Please enter Id",
+            empid: "Please enter a valid Id"
           },
           email: {
             required: "Please enter a email address",
@@ -271,6 +310,13 @@
             required: "Please provide a valid date of joining",
             date: true,
           },
+          // password: {
+          //   required: "Please enter a valid password",
+          //   minlength: "Your password must contain 8 characters"
+          // },
+          // confirm_password: {
+          //   required: "Please confirm password",
+          // },
           address: {
             required: "Please provide a address",
             address: "Please enter a valid  address"
@@ -316,6 +362,7 @@
         }
       });
     });
+
   </script>
 </body>
 
