@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Recover Password</title>
+  <title>HR Velocity | Recover Password</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -17,7 +17,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="../../index2.html"><b>HR</b>Velocity</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -25,14 +25,24 @@
       <p class="login-box-msg">You are only one step a way from your new password, recover your password now.</p>
 
       <form action="login1.php" method="post">
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+      <div class="input-group mb-3">
+          <input type="password" name="pass" class="form-control" placeholder="Old Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
+
+        <div class="input-group mb-3">
+          <input type="password" name="cpass" id="myInput" class="form-control" placeholder="New Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <!-- <input type="checkbox" onclick="myFunction()">Show Password -->
         <div class="input-group mb-3">
           <input type="password" class="form-control" placeholder="Confirm Password">
           <div class="input-group-append">
@@ -50,14 +60,31 @@
       </form>
 
       <p class="mt-3 mb-1">
-        <a href="login.html">Login</a>
+        <a href="login1.php">Back To Login</a>
       </p>
     </div>
     <!-- /.login-card-body -->
   </div>
 </div>
 <!-- /.login-box -->
-
+<!-- <script>
+function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script> -->
+<script>
+if ($_POST["pass"] === $_POST["cpass"]) {
+   echo "<script> alert(' Entered passwords are same') </script>";
+}
+else {
+   echo "<script> alert(' Password do not match! ') </script>";
+}
+</script>
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -65,4 +92,5 @@
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 </body>
+
 </html>
