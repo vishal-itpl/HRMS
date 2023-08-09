@@ -15,7 +15,7 @@
 
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
-      <img class="animation__shake" src="dist/img/HR.png" alt="AdminLTELogo" height="260" width="260">
+      <img class="animation__shake" src="dist/img/comp_logo.png" alt="AdminLTELogo" height="260" width="260">
     </div>
 
     <!-- Navbar -->

@@ -10,6 +10,9 @@ if (isset($_POST['submit'])):
         if ($pwd == $c_pwd):
             if ($pwd != $old_pwd):
                 $db_check = $db->query("SELECT * FROM `singup` WHERE `id`='$user_id' AND `password` ='$old_pwd'");
+                if (!$db_check) {
+                    echo "Query error: " . $db->error;
+                }
                 $count = mysqli_num_rows($db_check);
                 if ($count == 1):
                     $fetch = $db->query("UPDATE `singup` SET `password` = '$pwd' WHERE `id`='$user_id'");
