@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Employee List</title>
+  <title>HR Velocity | Employee List</title>
   <?php include './css/style.php'; ?>
 </head>
 

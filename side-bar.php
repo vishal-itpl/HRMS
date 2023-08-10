@@ -202,7 +202,7 @@
             </ul> -->
           </li>
           <li class="nav-item">
-                <a href="change-password.php" class="nav-link">
+                <a href="changepw.php" class="nav-link">
                   <!-- <i class="far fa-circle nav-icon"></i> -->
                   <i class="nav-icon fa-solid fa-unlock-keyhole"></i>
                   <p>Change Password</p>

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Employee Registration</title>
+  <title>HR Velocity | Employee Registration</title>
   <?php include './css/style.php'; ?>
   <style>
     .custom-card-header {

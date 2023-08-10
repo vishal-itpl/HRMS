@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HR Management System | Log in</title>
+  <title>HR Velocity | Log in</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
@@ -21,11 +21,13 @@
 
 <body class="hold-transition login-page">
   <div class="login-box">
-    <div class="login-logo">
-      <b>HR Management System</b></a>
-    </div>
     <div class="card">
       <div class="card-body login-card-body">
+        <div class="login-logo">
+        <img src="dist/img/comp_logo.png" alt="HRVelocity Logo" class="brand-image" style=" width: 250px;">
+        <br>
+          <b>HR Velocity</b></a>
+        </div>
         <p class="login-box-msg">Sign in to start your session</p>
 
         <form action="" method="post">
