@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,15 +50,15 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form id="quickForm">
+                <form method="post" action="employee_list.php" id="quickForm">
                   <div class="card-body">
                     <div class="form-group col-12">
                       <label for="Name">Employee Name</label>
-                      <input type="text" name="name" class="form-control" placeholder="Enter Employee Name">
+                      <input type="text" name="name" class="form-control" placeholder="Enter Employee Name" value="Vishal Kewalramani">
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Employee Id</label>
-                      <input type="text" name="empid" class="form-control" placeholder="Enter Employee Id">
+                      <input type="text" name="empid" class="form-control" placeholder="Enter Employee Id" value="1050">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Date Of Birth</label>
@@ -84,26 +85,26 @@
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Email Address</label>
-                      <input type="email" name="email" class="form-control" placeholder="Enter Email Address">
+                      <input type="email" name="email" class="form-control" value="vishal@mail.com" placeholder="Enter Email Address">
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Mobile No.</label>
                       <input name="number" type="text" class="form-control" maxlength="10"
-                        placeholder="Enter Mobile No.">
+                        placeholder="Enter Mobile No." value="9874563210">
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Password</label>
                       <input type="password" name="password" id="password" class="form-control"
-                        placeholder="Enter Password" maxlength="10">
+                        placeholder="Enter Password" maxlength="10" required>
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Confirm Password</label>
                       <input type="password" name="confirm_password" id="confirm_password" class="form-control"
-                        placeholder="Confirm Password" maxlength="10">
+                        placeholder="Confirm Password" maxlength="10" required>
                     </div>
                     <div class="form-group col-12">
                       <label>Address</label>
-                      <textarea class="form-control" name="address" rows="1" placeholder="Enter Address..."></textarea>
+                      <textarea class="form-control" name="address" rows="1" value="test" placeholder="Enter Address..."></textarea>
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Position</label>
@@ -122,20 +123,20 @@
                     <div class="form-group">
                       <label for="exampleInputPassword1">Salary</label>
                       <input type="text" name="salary" class="form-control" id="exampleInputsalary1"
-                        placeholder="Salary">
+                        placeholder="Salary" value="35000">
                     </div>
                     <label for="emergency" style="margin-left: 0px;">Emergency Contact</label>
                     <div class="form-group col-12">
                       <label for="emgname">Name</label>
-                      <input type="text" name="emgname" class="form-control" placeholder="Enter Name">
+                      <input type="text" name="emgname" class="form-control" value="Ash" placeholder="Enter Name">
                     </div>
                     <div class="form-group col-12">
                       <label for="relation">Relation with employee</label>
-                      <input type="text" name="emgrltn" class="form-control" placeholder="Enter relation with employee">
+                      <input type="text" name="emgrltn" class="form-control" value="Brother" placeholder="Enter relation with employee">
                     </div>
                     <div class="form-group col-12">
                       <label for="contact">Contact No.</label>
-                      <input type="text" name="emgno" class="form-control" maxlength="10"
+                      <input type="text" name="emgno" value="7412589654" class="form-control" maxlength="10"
                         placeholder="Enter Mobile No.">
                     </div>
 
@@ -170,7 +171,7 @@
                     <div class="form-group mb-0">
                       <div class="custom-control custom-checkbox">
                         <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                        <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of
+                        <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="terms&service.php">terms of
                             service</a>.</label>
                       </div>
                     </div>
@@ -196,8 +197,10 @@
       <!-- /.content -->
     </div>
   </div>
-  
   <?php include './js/js.php'; ?>
+  
+  
+
   <script>
     function validateForm() {
       var password = document.getElementById("password").value;
@@ -239,6 +242,7 @@
             required: true,
             date: true,
           },
+
           doj: {
             required: true,
             date: true,
@@ -364,6 +368,38 @@
     });
 
   </script>
+  <?php
+include 'connections.php';
+if(isset($_POST['submit'])){
+  echo $emp_name=$_POST['name'];
+   echo $emp_ID=$_POST['empid'];
+   echo $emp_dob=$_POST['dob'];
+   echo $emp_gender=$_POST['customRadio'];
+   echo $emp_email=$_POST['email'];
+   echo $emp_mob=$_POST['number'];
+   echo $password=$_POST['password'];
+   echo $c_password=$_POST['confirm_password'];
+   echo $emp_address=$_POST['address'];
+  echo  $emp_position=$_POST['position'];
+   echo $emp_doj=$_POST['doj'];
+   echo $emp_salary=$_POST['salary'];
+   echo $emg_name=$_POST['emgname'];
+   echo $emg_rltn=$_POST['emgrltn'];
+   echo $emg_contact=$_POST['emgno'];
+   echo $bank_name=$_POST['bankname'];
+   echo $bank_accno=$_POST['bankacc'];
+   echo $bank_acctype=$_POST['bankacctype'];
+
+
+  $sql="insert into 'employee' (emp_ID,emp_name,emp_dob,emp_gender,emp_email,emp_mob,password,c_password,emp_address,emp_position,emp_doj,emp_salary,emg_name,emg_rltn,emg_contact,bank_name,bank_accno,bank_acctype) values('$name','$emp_ID','$emp_dob','$emp_gender','$emp_email','$emp_mob','$password','$c_password','$emp_address','$emp_position','$emp_doj','$emp_salary','$emg_name','$emg_rltn','$emg_contact','$bank_name','$bank_accno','$bank_acctype')";
+  $result=mysqli_query($con,$sql);
+if($result){
+  echo"Data inserted successfully";
+}else{
+  die(mysqli_error($con));
+}
+}
+?>
 </body>
 
 </html>

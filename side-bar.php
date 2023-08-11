@@ -75,38 +75,29 @@
           </li> -->
           <li class="nav-item">
             <a href="leave_list.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-user-clock"></i>
+            <i class="nav-icon right fas fa-angle-left"></i>
               <p>
                 Leave Management
               </p>
             </a>
-            <!-- <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ChartJS</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Flot</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inline</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/uplot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>uPlot</p>
-                </a>
-              </li>
-            </ul>
-          </li> -->
+             <ul class="nav nav-treeview">
+               <li class="nav-item">
+                 <a href="leave_list.php" class="nav-link">
+                   <!-- <i class="far fa-circle nav-icon"></i> -->
+                   <i class="nav-icon fa-solid fa-list"></i>
+                   <p>Leave List</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="Leave_application.php" class="nav-link">
+                    <!-- <i class="far fa-circle nav-icon"></i> -->
+                    <i class="nav-icon fa-solid fa-calendar-days"></i>
+                    <p>Leave Application</p>
+                  </a>
+                </li>
+             </ul>
+
+          </li> 
           <li class="nav-item">
             <a href="projects.php" class="nav-link">
               <i class="nav-icon fa-solid fa-bars-progress"></i>

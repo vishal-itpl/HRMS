@@ -65,7 +65,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
               <!-- jquery validation -->
               <div class="card card-primary">
                 <div class="card-header custom-card-header">
-                  <h3 class="card-title">Recover Password</h3>
+                  <h3 class="card-title"><b>Recover Password</b></h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
