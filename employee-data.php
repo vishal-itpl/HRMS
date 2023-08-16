@@ -1,9 +1,9 @@
 <?php
 include 'connections.php';
 
-echo "<pre>";
-print_r($GLOBALS);
-echo "</pre>";
+// echo "<pre>";
+// print_r($GLOBALS);
+// echo "</pre>";
 
 if (isset($_POST['submit'])) {
     echo $employee_name = $_POST['name'];
