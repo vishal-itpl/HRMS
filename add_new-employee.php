@@ -50,7 +50,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form method="post" action="employee_list.php" id="quickForm">
+                <form  action="employee-data.php" id="quickForm" method="post">
                   <div class="card-body">
                     <div class="form-group col-12">
                       <label for="Name">Employee Name</label>
@@ -73,12 +73,12 @@
 
                         </div>
                         <div class="custom-control custom-radio col-md-2">
-                          <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" checked>
+                          <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" value="Male" checked>
                           <label for="customRadio1" class="custom-control-label">Male</label>
                         </div>
 
                         <div class="custom-control custom-radio col-md-2">
-                          <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio">
+                          <input class="custom-control-input" type="radio" value="Female" id="customRadio2" name="customRadio">
                           <label for="customRadio2" class="custom-control-label">Female</label>
                         </div>
                       </div>
@@ -178,7 +178,7 @@
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" name='submit' class="btn btn-primary">Submit</button>
                   </div>
                 </form>
               </div>
@@ -197,10 +197,14 @@
       <!-- /.content -->
     </div>
   </div>
+
   <?php include './js/js.php'; ?>
   
   
+<?php
+include 'connections.php';
 
+?>
   <script>
     function validateForm() {
       var password = document.getElementById("password").value;
@@ -368,38 +372,7 @@
     });
 
   </script>
-  <?php
-include 'connections.php';
-if(isset($_POST['submit'])){
-  echo $emp_name=$_POST['name'];
-   echo $emp_ID=$_POST['empid'];
-   echo $emp_dob=$_POST['dob'];
-   echo $emp_gender=$_POST['customRadio'];
-   echo $emp_email=$_POST['email'];
-   echo $emp_mob=$_POST['number'];
-   echo $password=$_POST['password'];
-   echo $c_password=$_POST['confirm_password'];
-   echo $emp_address=$_POST['address'];
-  echo  $emp_position=$_POST['position'];
-   echo $emp_doj=$_POST['doj'];
-   echo $emp_salary=$_POST['salary'];
-   echo $emg_name=$_POST['emgname'];
-   echo $emg_rltn=$_POST['emgrltn'];
-   echo $emg_contact=$_POST['emgno'];
-   echo $bank_name=$_POST['bankname'];
-   echo $bank_accno=$_POST['bankacc'];
-   echo $bank_acctype=$_POST['bankacctype'];
 
-
-  $sql="insert into 'employee' (emp_ID,emp_name,emp_dob,emp_gender,emp_email,emp_mob,password,c_password,emp_address,emp_position,emp_doj,emp_salary,emg_name,emg_rltn,emg_contact,bank_name,bank_accno,bank_acctype) values('$name','$emp_ID','$emp_dob','$emp_gender','$emp_email','$emp_mob','$password','$c_password','$emp_address','$emp_position','$emp_doj','$emp_salary','$emg_name','$emg_rltn','$emg_contact','$bank_name','$bank_accno','$bank_acctype')";
-  $result=mysqli_query($con,$sql);
-if($result){
-  echo"Data inserted successfully";
-}else{
-  die(mysqli_error($con));
-}
-}
-?>
 </body>
 
 </html>

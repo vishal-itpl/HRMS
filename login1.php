@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     $email = $_POST["email"];
-    $password = md5($_POST["password"]);
+    $password =($_POST["password"]);
 
     // Validate credentials against the database
     $query = "SELECT * FROM credentials WHERE email = '$email' AND password = '$password'";

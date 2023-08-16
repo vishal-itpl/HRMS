@@ -9,7 +9,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
-
+<div class="wrapper">
   <?php include 'nav-bar.php'; ?>
   <?php include 'side-bar.php'; ?>
 
@@ -252,6 +252,7 @@
   <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
+  </div>
 
   <!-- jQuery -->
   <?php include 'js/js.php'; ?>
