@@ -1,9 +1,9 @@
 <?php
 include 'connections.php';
 
-echo "<pre>";
-print_r($GLOBALS);
-echo "</pre>";
+// echo "<pre>";
+// print_r($GLOBALS);
+// echo "</pre>";
 // die();
 
 if (isset($_REQUEST['deleteid'])) {
@@ -15,7 +15,7 @@ if (isset($_REQUEST['deleteid'])) {
 
     $result = mysqli_query($con, $sql);
     if ($result) {
-        echo "Deleted Successfully!!";
+        header('location:employee_list.php');
     } else {
         die(mysqli_error($con));
     }
