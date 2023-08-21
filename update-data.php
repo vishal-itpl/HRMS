@@ -5,7 +5,7 @@ echo "<pre>";
 print_r($GLOBALS);
 echo "</pre>";
 
-if (isset($_POST['submit'])) {
+
     echo $employee_name = $_POST['name'];
     echo $employee_ID = $_POST['empid'];
     echo $employee_dob = $_POST['dob'];
@@ -28,32 +28,31 @@ if (isset($_POST['submit'])) {
     echo $bankacctype = $_POST['bankacctype'];
 
     $sql = "update emp_info set name= '$employee_name', 
-empid= '$employee_ID', 
-dob= '$employee_dob', 
-customRadio= '$employee_gender',
-email= '$employee_email',
-number= '$employee_mob',
-password= '$employee_password',
-confirm_password= '$employee_cpassword',
-address= '$employee_address',
-position= '$employee_position',
-doj= '$employee_doj',
-salary= '$employee_salary',
-emgname= '$emergency_name',
-emgrltn= '$emergency_rltn',
-emgno= $emergency_contact',
-bankname= '$bankname',
-bankacc= '$bankaccno',
-bankacctype= '$bankacctype'";
+    empid= '$employee_ID', 
+    dob= '$employee_dob', 
+    customRadio= '$employee_gender',
+    email= '$employee_email',
+    number= '$employee_mob',
+    password= '$employee_password',
+    confirm_password= '$employee_cpassword',
+    address= '$employee_address',
+    position= '$employee_position',
+    doj= '$employee_doj',
+    salary= '$employee_salary',
+    emgname= '$emergency_name',
+    emgrltn= '$emergency_rltn',
+    emgno= '$emergency_contact',
+    bankname= '$bankname',
+    bankacc= '$bankaccno',
+    bankacctype= '$bankacctype'";
 
     $result = mysqli_query($con, $sql);
     if ($result) {
-        echo "<script> alert('Data inserted successfully') </script>";
+        echo "<script> alert('Data Updated successfully') </script>";
         // header('location:employee_list.php');
     } else {
         die(mysqli_error($con));
     }
-}
 
 
 
