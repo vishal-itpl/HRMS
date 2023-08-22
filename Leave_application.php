@@ -75,9 +75,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Description</label>
+                                        <label>Description</label>&nbsp;<i class="fa-solid fa-asterisk fa-2xs" style="color: #ff0000;"></i>
                                         <textarea name="desc" class="form-control" rows="3"
-                                            placeholder="Enter Description here..."></textarea>
+                                            placeholder="Enter Description here..." required></textarea>
                                     </div>
 
                                 </div>

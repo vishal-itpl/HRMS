@@ -1,55 +1,3 @@
-<?php if(isset($_GET['id'])){
-  print_r("SHIV");
-  exit;
-  echo $employee_name = $_POST['name'];
-  echo $employee_ID = $_POST['empid'];
-  echo $employee_dob = $_POST['dob'];
-  echo $employee_gender = $_POST['customRadio'];
-  echo $employee_email = $_POST['email'];
-  echo $employee_mob = $_POST['number'];
-  echo $employee_password = md5($_POST['password']);
-  echo $employee_cpassword = md5($_POST['confirm_password']);
-  echo $employee_address = $_POST['address'];
-  echo $employee_position = $_POST['position'];
-  echo $employee_doj = $_POST['doj'];
-  echo $employee_salary = $_POST['salary'];
-  echo $emergency_name = $_POST['emgname'];
-  echo $emergency_rltn = $_POST['emgrltn'];
-  echo $emergency_contact = $_POST['emgno'];
-  echo $bankname = $_POST['bankname'];
-  echo $bankaccno = $_POST['bankacc'];
-  echo $bankacctype = $_POST['bankacctype'];
-  
-  $sql = "SELECT * FROM emp_info WHERE 'emp_id=$emp_id'
-  name= '$employee_name', 
-  empid= '$employee_ID', 
-  dob= '$employee_dob', 
-  customRadio= '$employee_gender',
-  email= '$employee_email',
-  number= '$employee_mob',
-  password= '$employee_password',
-  confirm_password= '$employee_cpassword',
-  address= '$employee_address',
-  position= '$employee_position',
-  doj= '$employee_doj',
-  salary= '$employee_salary',
-  emgname= '$emergency_name',
-  emgrltn= '$emergency_rltn',
-  emgno= '$emergency_contact',
-  bankname= '$bankname',
-  bankacc= '$bankaccno',
-  bankacctype= '$bankacctype'";
-  $result = mysqli_query($con, $sql);
-  if ($result) {
-      echo "<script> alert('Data Updated successfully') </script>";
-      // header('location:employee_list.php');
-  } else {
-      die(mysqli_error($con));
-  }
-}else{
-  echo "HELLO ERROR!";
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,15 +45,32 @@
                 <!-- form start -->
                 <form action="update-data.php" id="quickForm" method="Post">
                   <div class="card-body">
+                    <?php
+                    // echo "<pre>";
+                    // print_r($_POST);
+                    // echo "</pre>";
+                    $emp_id = $_GET['id'];
+                    // Assuming emp_id is passed via query parameter
+                    
+                    // Connect to the database and retrieve existing data
+                    $con = new mysqli('localhost', 'root', '', 'hrms');
+                    if (!$con) {
+                      die(mysqli_error($con));
+                    }
+
+                    $sql = "SELECT * FROM emp_info WHERE emp_id = '$emp_id'";
+                    $result = mysqli_query($con, $sql);
+                    $row = mysqli_fetch_assoc($result);
+                    ?>
                     <div class="form-group col-12">
                       <label for="Name">Employee Name</label>
-                      <input type="text" name="name" class="form-control" placeholder="Enter Employee Name">
-
-
+                      <input type="text" name="name" class="form-control" placeholder="Enter Employee Name"
+                        value="<?php echo $row['name']; ?>">
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Employee Id</label>
-                      <input type="text" name="empid" class="form-control" placeholder="Enter Employee Id">
+                      <input type="text" name="empid" class="form-control" placeholder="Enter Employee Id"
+                        value="<?php echo $row['empid']; ?>">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Date Of Birth</label>
@@ -248,6 +213,66 @@
       </section>
       <!-- /.content -->
     </div>
+    <?php
+    if (isset($_POST['emp_id'])) {
+      $emp_id = $_POST['emp_id'];
+      $employee_name = $_POST['name'];
+      $employee_dob = $_POST['dob'];
+      $employee_gender = $_POST['customRadio'];
+      $employee_email = $_POST['email'];
+      $employee_mob = $_POST['number'];
+      $employee_password = md5($_POST['password']);
+      $employee_cpassword = md5($_POST['confirm_password']);
+      $employee_address = $_POST['address'];
+      $employee_position = $_POST['position'];
+      $employee_doj = $_POST['doj'];
+      $employee_salary = $_POST['salary'];
+      $emergency_name = $_POST['emgname'];
+      $emergency_rltn = $_POST['emgrltn'];
+      $emergency_contact = $_POST['emgno'];
+      $bankname = $_POST['bankname'];
+      $bankaccno = $_POST['bankacc'];
+      $bankacctype = $_POST['bankacctype'];
+
+      $con = new mysqli('localhost', 'root', '', 'hrms');
+
+      if ($con) {
+        echo "";
+      } else {
+        die(mysqli_error($con));
+      }
+
+      $sql = "UPDATE emp_info SET 
+        name = '$employee_name', 
+        dob = '$employee_dob', 
+        customRadio = '$employee_gender',
+        email = '$employee_email',
+        number = '$employee_mob',
+        password = '$employee_password',
+        confirm_password = '$employee_cpassword',
+        address = '$employee_address',
+        position = '$employee_position',
+        doj = '$employee_doj',
+        salary = '$employee_salary',
+        emgname = '$emergency_name',
+        emgrltn = '$emergency_rltn',
+        emgno = '$emergency_contact',
+        bankname = '$bankname',
+        bankacc = '$bankaccno',
+        bankacctype = '$bankacctype'
+    WHERE emp_id = '$emp_id'";
+
+      $result = mysqli_query($conn, $sql);
+      if ($result) {
+        echo "<script> alert('Data Updated successfully') </script>";
+        // Redirect to employee list or other page
+      } else {
+        die(mysqli_error($conn));
+      }
+    } else {
+      echo "HELLO ERROR!";
+    }
+    ?>
   </div>
   <?php include './js/js.php'; ?>
 </body>
