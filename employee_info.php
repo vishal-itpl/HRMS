@@ -11,16 +11,54 @@
 </head>
 
 <body>
+    <?php
+    include 'connections.php';
+    $row = [];
+    if (isset($_GET['id'])) {
+        $emp_id = $_GET['id'];
+
+        $sql = "SELECT * FROM emp_info WHERE emp_id = $emp_id";
+
+        $result = mysqli_query($con, $sql);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $dob = $row['emp_dob'];
+            $name = $row['emp_name'];
+            $gender = $row['emp_gender'];
+            $email = $row['emp_email'];
+            $mobile = $row['emp_mob'];
+            $address = $row['emp_address'];
+            $position = $row['emp_position'];
+            $doj = $row['emp_doj'];
+            $salary = $row['emp_salary'];
+            $emg_name = $row['emg_name'];
+            $emg_rltn = $row['emg_rltn'];
+            $emg_contact = $row['emg_contact'];
+            $bank_name = $row['bank_name'];
+            $bank_acc = $row['bank_accno'];
+            $acc_type = $row['bank_acctype'];
+        } else {
+            echo "Error: " . mysqli_error($con);
+        }
+
+        mysqli_close($con);
+    } else {
+        echo "Employee ID not provided.";
+    }
+    ?>
+
+
+
     <div class="wrapper">
         <?php include 'nav-bar.php'; ?>
         <?php include 'side-bar.php'; ?>
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <!-- <h1>Employee Registration</h1> -->
+                            <h1>Employee Details</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -34,145 +72,117 @@
 
             <section class="content">
                 <div class="col-12">
+                    <div>
+                        <a class="btn btn-primary float-right" href="employee_list.php" role="button"><i class="fa-solid fa-backward"></i></a>
+                    </div>
+                    <br>
+                    <br>
                     <div class="card">
                         <div class="card-header text-center">
                             <h3 class="card-title">Employee Information</h3>
                         </div>
-                        <!-- /.card-header -->
-                        <!-- <div class="card-body table-responsive p-0">
+                        <div class="card-body table-responsive p-0">
                             <table class="table table-hover text-nowrap">
-                                <thead>
-                                        <tr>
-                                        <th>Name</th>
-                                        </tr>
-                                        <tr>
-                                        <th>Id</th>
-                                        </tr>
-                                        <tr>
-                                        <th>Date of Birth</th>
-                                        </tr>
-                                        <tr>
-                                        <th>Gender</th> 
-                                        </tr>
-                                        <tr>
-                                        <th>Email Address</th>
-                                        </tr>
-                                        <tr>
-                                        <th>Mobile No.</th>
-                                        </tr>
-                                        <tr>
-                                        <th>Address</th>
-                                        </tr>
-                                        <tr>
-                                        <th>Position</th>
-                                        </tr>
-                                        <tr>
-                                        <th>Date Of Joining</th>
-                                        </tr>
-                                        <tr>
-                                        <th>Salary</th>
-                                        </tr>
-                                        <tr>
-                                        <th>Emergency Contact Name</th>
-                                        </tr>
-                                        <tr>
-                                        <th>Emergency Contact Relation</th>
-                                        </tr>
-                                        <tr>
-                                        <th>Emergency Contact Contact No.</th>
-                                        </tr>
-                                        <tr>
-                                        <th>Bank Name</th>
-                                        </tr>
-                                        <tr>
-                                        <th>Account Number</th>
-                                        </tr>
-                                        <tr>
-                                        <th>Account Type</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
-                                    
+                                    <?php
+                                    // echo "<pre>";
+                                    // print_r($row);
+                                    // echo "</pre>";
+                                    ?>
+                                    <tr>
+                                        <th style="width: 100px;">Name</th>
+                                        <td>
+                                            <?php echo $name; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Date of Birth</th>
+                                        <td>
+                                            <?php echo $dob; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Gender</th>
+                                        <td>
+                                            <?php echo $gender; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email Address</th>
+                                        <td>
+                                            <?php echo $email; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mobile No.</th>
+                                        <td>
+                                            <?php echo $mobile; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Address</th>
+                                        <td>
+                                            <?php echo $address; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Position</th>
+                                        <td>
+                                            <?php echo $position; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Date Of Joining</th>
+                                        <td>
+                                            <?php echo $doj; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Salary</th>
+                                        <td>
+                                            <?php echo $salary; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Emergency Contact Name</th>
+                                        <td>
+                                            <?php echo $emg_name; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Emergency Contact Relation</th>
+                                        <td>
+                                            <?php echo $emg_rltn; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Emergency Contact Contact No.</th>
+                                        <td>
+                                            <?php echo $emg_contact; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Bank Name</th>
+                                        <td>
+                                            <?php echo $bank_name; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Account Number</th>
+                                        <td>
+                                            <?php echo $bank_acc; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Account Type</th>
+                                        <td>
+                                            <?php echo $acc_type; ?>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
-                            
-
-                        </div> -->
-                        <div class="card-body table-responsive p-0">
-    <table class="table table-hover text-nowrap">
-        <tbody>
-            <tr>
-                <th style="width: 100px;">Name</th>
-                <td>John Doe</td>
-            </tr>
-            <tr>
-                <th>Id</th>
-                <td>123456</td>
-            </tr>
-            <tr>
-                <th>Date of Birth</th>
-                <td>1990-05-15</td>
-            </tr>
-            <tr>
-                <th>Gender</th>
-                <td>Male</td>
-            </tr>
-            <tr>
-                <th>Email Address</th>
-                <td>john@example.com</td>
-            </tr>
-            <tr>
-                <th>Mobile No.</th>
-                <td>9876543210</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>123 Main St, City, Country</td>
-            </tr>
-            <tr>
-                <th>Position</th>
-                <td>Manager</td>
-            </tr>
-            <tr>
-                <th>Date Of Joining</th>
-                <td>2023-01-15</td>
-            </tr>
-            <tr>
-                <th>Salary</th>
-                <td>$5000</td>
-            </tr>
-            <tr>
-                <th>Emergency Contact Name</th>
-                <td>Jane Doe</td>
-            </tr>
-            <tr>
-                <th>Emergency Contact Relation</th>
-                <td>Sister</td>
-            </tr>
-            <tr>
-                <th>Emergency Contact Contact No.</th>
-                <td>9876543200</td>
-            </tr>
-            <tr>
-                <th>Bank Name</th>
-                <td>State Bank of India</td>
-            </tr>
-            <tr>
-                <th>Account Number</th>
-                <td>1234567890</td>
-            </tr>
-            <tr>
-                <th>Account Type</th>
-                <td>Savings</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-
-                        <!-- /.card-body -->
+                        </div>
                     </div>
-                    <!-- /.card -->
                 </div>
             </section>
         </div>

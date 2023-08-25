@@ -33,14 +33,19 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
+          <div>
+            <a class="btn btn-primary float-right" href="employee_list.php" role="button"><i
+                class="fa-solid fa-backward"></i></a>
+          </div>
+          <br>
           <div class="row">
-            <!-- left column -->
             <div class="col-md-12">
-              <!-- jquery validation -->
+            <br>
               <div class="card card-primary">
                 <div class="card-header custom-card-header">
                   <h3 class="card-title">Edit Employee Information</h3>
                 </div>
+
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form action="update-data.php" id="quickForm" method="Post">
@@ -61,9 +66,9 @@
                     $sql = "SELECT * FROM emp_info WHERE emp_id = '$emp_id'";
                     $result = mysqli_query($con, $sql);
                     $row = mysqli_fetch_assoc($result);
-                    echo "<pre>";
-                    print_r($row);
-                    echo "</pre>";
+                    // echo "<pre>";
+                    // print_r($row);
+                    // echo "</pre>";
                     // echo""
                     ?>
                     <div class="form-group col-12">
@@ -72,9 +77,9 @@
                         value="<?php echo $row['emp_name']; ?>">
                     </div>
                     <div class="form-group col-12">
-                      <label for="Name">Employee Id</label>
+                      <label for="Name" hidden>Employee Id</label>
                       <input type="text" name="empid" class="form-control" placeholder="Enter Employee Id"
-                        value="<?php echo $row['emp_id']; ?>">
+                        value="<?php echo $row['emp_id']; ?>" hidden>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Date Of Birth</label>
@@ -90,13 +95,14 @@
                         </div>
                         <div class="custom-control custom-radio col-md-2">
                           <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio"
-                            value="Male" checked>
+                            value="Male" <?php if ($row['emp_gender'] == 'Male')
+                              echo 'checked'; ?>>
                           <label for="customRadio1" class="custom-control-label">Male</label>
                         </div>
 
                         <div class="custom-control custom-radio col-md-2">
-                          <input class="custom-control-input" type="radio" value="Female" id="customRadio2"
-                            name="customRadio">
+                          <input class="custom-control-input" type="radio" value="Female" <?php if ($row['emp_gender'] == 'Female')
+                            echo 'checked'; ?> id="customRadio2" name="customRadio">
                           <label for="customRadio2" class="custom-control-label">Female</label>
                         </div>
                       </div>
@@ -111,27 +117,22 @@
                       <input name="number" type="text" class="form-control" maxlength="10"
                         placeholder="Enter Mobile No." value="<?php echo $row['emp_mob']; ?>">
                     </div>
-                    <div class="form-group col-12">
-                      <label for="Name">Password</label>
-                      <input type="password" name="password" id="password" class="form-control"
-                        placeholder="Enter Password" maxlength="10" value="<?php echo $row['password']; ?>">
-                    </div>
-                    <div class="form-group col-12">
-                      <label for="Name">Confirm Password</label>
-                      <input type="password" name="confirm_password" id="confirm_password" class="form-control"
-                        placeholder="Confirm Password" maxlength="10" value="<?php echo $row['emp_email']; ?>">
-                    </div>
+
                     <div class="form-group col-12">
                       <label>Address</label>
-                      <textarea class="form-control" name="address" rows="1" placeholder="Enter Address..."
-                        ><?php echo $row['emp_address']; ?></textarea>
+                      <textarea class="form-control" name="address" rows="1"
+                        placeholder="Enter Address..."><?php echo $row['emp_address']; ?></textarea>
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Position</label>
                       <select name="position" class="form-control" value="<?php echo $row['emp_email']; ?>">
-                        <option>Intern</option>
-                        <option>Jr. Developer</option>
-                        <option>Sr. Developer</option>
+                        <option value="Intern" <?php if ($row['emp_position'] == 'Intern')
+                          echo 'selected'; ?>>Intern
+                        </option>
+                        <option value="Jr. Developer" <?php if ($row['emp_position'] == 'Jr. Developer')
+                          echo 'selected'; ?>>Jr. Developer</option>
+                        <option value="Sr. Developer" <?php if ($row['emp_position'] == 'Sr. Developer')
+                          echo 'selected'; ?>>Sr. Developer</option>
                       </select>
                     </div>
 
@@ -168,12 +169,19 @@
                     <div class="form-group col-12">
                       <label for="Name">Bank Name</label>
                       <select name="bankname" class="form-control" value="<?php echo $row['bank_name']; ?>">
-                        <option>State Bank Of India</option>
-                        <option>Axis Bank</option>
-                        <option>IndusInd Bank</option>
-                        <option>HDFC Bank</option>
-                        <option>ICICI Bank</option>
-                        <option>Bank of Baroda</option>
+                        <option value="1" <?php if ($row['bank_name'] == '1')
+                          echo 'selected'; ?>>State Bank Of India
+                        </option>
+                        <option value="2" <?php if ($row['bank_name'] == '2')
+                          echo 'selected'; ?>>Axis Bank</option>
+                        <option value="3" <?php if ($row['bank_name'] == '3')
+                          echo 'selected'; ?>>IndusInd Bank</option>
+                        <option value="4" <?php if ($row['bank_name'] == '4')
+                          echo 'selected'; ?>>HDFC Bank</option>
+                        <option value="5" <?php if ($row['bank_name'] == '5')
+                          echo 'selected'; ?>>ICICI Bank</option>
+                        <option value="6" <?php if ($row['bank_name'] == '6')
+                          echo 'selected'; ?>>Bank of Baroda</option>
                       </select>
                     </div>
                     <div class="form-group col-12">
@@ -185,19 +193,23 @@
                       <label for="Name">Account Type</label>
                       <select name="bankacctype" class="form-control">
                         <!-- <option></option> -->
-                        <option value="Savings account" <?php if ($row['bank_acctype'] == 'Savings account')
-                          echo 'selected'; ?> >Savings account</option>
-                        <option value="Current account" <?php if ($row['bank_acctype'] == 'Current account')
-                          echo 'selected'; ?> >Current account</option>
-                        <option value="Personal account" <?php if ($row['bank_acctype'] == 'Personal account')
-                          echo 'selected'; ?> >Personal account</option>
-                        <option value="Fixed deposit account" <?php if ($row['bank_acctype'] == 'Fixed deposit account')
-                          echo 'selected'; ?> >Fixed deposit account</option>
+                        <option value="1" <?php if ($row['bank_acctype'] == '1')
+                          echo 'selected'; ?>>Savings account
+                        </option>
+                        <option value="2" <?php if ($row['bank_acctype'] == '2')
+                          echo 'selected'; ?>>Current account
+                        </option>
+                        <option value="3" <?php if ($row['bank_acctype'] == '3')
+                          echo 'selected'; ?>>Personal account
+                        </option>
+                        <option value="4" <?php if ($row['bank_acctype'] == '4')
+                          echo 'selected'; ?>>Fixed deposit account
+                        </option>
                       </select>
                     </div>
 
 
-                    <div class="form-group mb-0">
+                    <!-- <div class="form-group mb-0">
                       <div class="custom-control custom-checkbox">
                         <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
                         <label class="custom-control-label" for="exampleCheck1">I agree to the <a
@@ -205,11 +217,11 @@
                             service</a>.</label>
                       </div>
                     </div>
-                  </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer">
-                    <button type="submit" name='save' class="btn btn-primary">Save</button>
-                  </div>
+                  </div> -->
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                      <button type="submit" name='save' class="btn btn-primary">Save</button>
+                    </div>
                 </form>
               </div>
               <!-- /.card -->
@@ -273,7 +285,7 @@
         bankname = '$bankname',
         bankacc = '$bankaccno',
         bankacctype = '$bankacctype'
-    WHERE emp_id = '$emp_id'";
+        WHERE emp_id = '$emp_id'";
 
       $result = mysqli_query($conn, $sql);
       if ($result) {

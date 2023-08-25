@@ -49,7 +49,7 @@
                 <br>
                 <tr>
                   <th>Sr No.</th>
-                  <th>Employee No.</th>
+                  <th>Employee Id.</th>
                   <th>Employee Name</th>
                   <th>Employee Address</th>
                   <th>Email</th>

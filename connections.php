@@ -2,7 +2,7 @@
 $con=new mysqli('localhost','root','','hrms');
 
 if($con){
-    echo"";
+    echo"Connection Successfull";
 }else{
     die(mysqli_error($con));
 }

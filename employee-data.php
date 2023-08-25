@@ -7,7 +7,7 @@ include 'connections.php';
 
 if (isset($_POST['submit'])) {
     echo $employee_name = $_POST['name'];
-    echo $employee_ID = $_POST['empid'];
+    // echo $employee_ID = $_POST['empid'];
     echo $employee_dob = $_POST['dob'];
     echo $employee_gender = $_POST['customRadio'];
     echo $employee_email = $_POST['email'];
@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
     echo $bankacctype = $_POST['bankacctype'];
 
 
-    $sql = "insert into emp_info (emp_name,emp_id,emp_dob,emp_gender,emp_email,emp_mob,password,c_password,emp_address,emp_position,emp_doj,emp_salary,emg_name,emg_rltn,emg_contact,bank_name,bank_accno,bank_acctype) values('$employee_name','$employee_ID','$employee_dob','$employee_gender','$employee_email','$employee_mob','$employee_password','$employee_cpassword','$employee_address','$employee_position','$employee_doj','$employee_salary','$emergency_name','$emergency_rltn','$emergency_contact','$bankname','$bankaccno','$bankacctype')";
+    $sql = "insert into emp_info (emp_name,emp_dob,emp_gender,emp_email,emp_mob,password,c_password,emp_address,emp_position,emp_doj,emp_salary,emg_name,emg_rltn,emg_contact,bank_name,bank_accno,bank_acctype) values('$employee_name','$employee_dob','$employee_gender','$employee_email','$employee_mob','$employee_password','$employee_cpassword','$employee_address','$employee_position','$employee_doj','$employee_salary','$emergency_name','$emergency_rltn','$emergency_contact','$bankname','$bankaccno','$bankacctype')";
     $result = mysqli_query($con, $sql);
     if ($result) {
         echo "<script> alert('Data inserted successfully') </script>";

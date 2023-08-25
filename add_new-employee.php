@@ -55,10 +55,10 @@
                       <label for="Name">Employee Name</label>
                       <input type="text" name="name" class="form-control" placeholder="Enter Employee Name" value="Vishal Kewalramani">
                     </div>
-                    <div class="form-group col-12">
-                      <label for="Name">Employee Id</label>
+                    <!-- <div class="form-group col-12"> -->
+                      <!-- <label for="Name">Employee Id</label> -->
                       <!-- <input type="text" name="empid" class="form-control" placeholder="Enter Employee Id" value="1050"> -->
-                    </div>
+                    <!-- </div> -->
                     <div class="form-group">
                       <label for="exampleInputEmail1">Date Of Birth</label>
                       <input type="date" name="dob" class="form-control" id="exampleInputEmail1"
@@ -143,12 +143,12 @@
                     <div class="form-group col-12">
                       <label for="Name">Bank Name</label>
                       <select name="bankname" class="form-control">
-                        <option>State Bank Of India</option>
-                        <option>Axis Bank</option>
-                        <option>Indusland Bank</option>
-                        <option>HDFC Bank</option>
-                        <option>ICICI Bank</option>
-                        <option>Bank of Baroda</option>
+                        <option value="1">State Bank Of India</option>
+                        <option value="2">Axis Bank</option>
+                        <option value="3">Indusland Bank</option>
+                        <option value="4">HDFC Bank</option>
+                        <option value="5">ICICI Bank</option>
+                        <option value="6">Bank of Baroda</option>
                       </select>
                     </div>
                     <div class="form-group col-12">
@@ -159,10 +159,10 @@
                     <div class="form-group col-12">
                       <label for="Name">Account Type</label>
                       <select name="bankacctype" class="form-control">
-                        <option>Savings account</option>
-                        <option>Current account</option>
-                        <option>Personal account</option>
-                        <option>Fixed deposit account</option>
+                        <option value="1">Savings account</option>
+                        <option value="2">Current account</option>
+                        <option value="3">Personal account</option>
+                        <option value="4">Fixed deposit account</option>
                       </select>
                     </div>
 
