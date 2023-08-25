@@ -57,7 +57,7 @@
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Employee Id</label>
-                      <input type="text" name="empid" class="form-control" placeholder="Enter Employee Id" value="1050">
+                      <!-- <input type="text" name="empid" class="form-control" placeholder="Enter Employee Id" value="1050"> -->
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Date Of Birth</label>

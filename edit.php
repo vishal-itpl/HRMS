@@ -61,21 +61,25 @@
                     $sql = "SELECT * FROM emp_info WHERE emp_id = '$emp_id'";
                     $result = mysqli_query($con, $sql);
                     $row = mysqli_fetch_assoc($result);
+                    echo "<pre>";
+                    print_r($row);
+                    echo "</pre>";
+                    // echo""
                     ?>
                     <div class="form-group col-12">
                       <label for="Name">Employee Name</label>
                       <input type="text" name="name" class="form-control" placeholder="Enter Employee Name"
-                        value="<?php echo $row['name']; ?>">
+                        value="<?php echo $row['emp_name']; ?>">
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Employee Id</label>
                       <input type="text" name="empid" class="form-control" placeholder="Enter Employee Id"
-                        value="<?php echo $row['empid']; ?>">
+                        value="<?php echo $row['emp_id']; ?>">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Date Of Birth</label>
                       <input type="date" name="dob" class="form-control" id="exampleInputEmail1"
-                        placeholder="Enter DOB">
+                        value="<?php echo $row['emp_dob']; ?>">
                     </div>
 
                     <div class="form-group">
@@ -99,30 +103,32 @@
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Email Address</label>
-                      <input type="email" name="email" class="form-control" placeholder="Enter Email Address">
+                      <input type="email" name="email" class="form-control" placeholder="Enter Email Address"
+                        value="<?php echo $row['emp_email']; ?>">
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Mobile No.</label>
                       <input name="number" type="text" class="form-control" maxlength="10"
-                        placeholder="Enter Mobile No.">
+                        placeholder="Enter Mobile No." value="<?php echo $row['emp_mob']; ?>">
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Password</label>
                       <input type="password" name="password" id="password" class="form-control"
-                        placeholder="Enter Password" maxlength="10">
+                        placeholder="Enter Password" maxlength="10" value="<?php echo $row['password']; ?>">
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Confirm Password</label>
                       <input type="password" name="confirm_password" id="confirm_password" class="form-control"
-                        placeholder="Confirm Password" maxlength="10">
+                        placeholder="Confirm Password" maxlength="10" value="<?php echo $row['emp_email']; ?>">
                     </div>
                     <div class="form-group col-12">
                       <label>Address</label>
-                      <textarea class="form-control" name="address" rows="1" placeholder="Enter Address..."></textarea>
+                      <textarea class="form-control" name="address" rows="1" placeholder="Enter Address..."
+                        ><?php echo $row['emp_address']; ?></textarea>
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Position</label>
-                      <select name="position" class="form-control">
+                      <select name="position" class="form-control" value="<?php echo $row['emp_email']; ?>">
                         <option>Intern</option>
                         <option>Jr. Developer</option>
                         <option>Sr. Developer</option>
@@ -131,37 +137,40 @@
 
                     <div class="form-group">
                       <label for="exampleInputJoining1">Date Of Joining</label>
-                      <input type="date" name="doj" class="form-control" id="exampleInputjoining1">
+                      <input type="date" name="doj" class="form-control" id="exampleInputjoining1"
+                        value="<?php echo $row['emp_doj']; ?>">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputPassword1">Salary</label>
                       <input type="text" name="salary" class="form-control" id="exampleInputsalary1"
-                        placeholder="Salary">
+                        placeholder="Salary" value="<?php echo $row['emp_salary']; ?>">
                     </div>
                     <label for="emergency" style="margin-left: 0px;">Emergency Contact</label>
                     <div class="form-group col-12">
                       <label for="emgname">Name</label>
-                      <input type="text" name="emgname" class="form-control" placeholder="Enter Name">
+                      <input type="text" name="emgname" class="form-control" placeholder="Enter Name"
+                        value="<?php echo $row['emg_name']; ?>">
                     </div>
                     <div class="form-group col-12">
                       <label for="relation">Relation with employee</label>
-                      <input type="text" name="emgrltn" class="form-control" placeholder="Enter relation with employee">
+                      <input type="text" name="emgrltn" class="form-control" placeholder="Enter relation with employee"
+                        value="<?php echo $row['emg_rltn']; ?>">
                     </div>
                     <div class="form-group col-12">
                       <label for="contact">Contact No.</label>
-                      <input type="text" name="emgno" class="form-control" maxlength="10"
-                        placeholder="Enter Mobile No.">
+                      <input type="text" name="emgno" class="form-control" maxlength="10" placeholder="Enter Mobile No."
+                        value="<?php echo $row['emg_contact']; ?>">
 
                     </div>
 
                     <label for="emergency" style="margin-left: 0px;"> Bank Details</label>
                     <div class="form-group col-12">
                       <label for="Name">Bank Name</label>
-                      <select name="bankname" class="form-control">
+                      <select name="bankname" class="form-control" value="<?php echo $row['bank_name']; ?>">
                         <option>State Bank Of India</option>
                         <option>Axis Bank</option>
-                        <option>Indusland Bank</option>
+                        <option>IndusInd Bank</option>
                         <option>HDFC Bank</option>
                         <option>ICICI Bank</option>
                         <option>Bank of Baroda</option>
@@ -170,16 +179,20 @@
                     <div class="form-group col-12">
                       <label for="Name">Account Number</label>
                       <input type="password" name="bankacc" maxlength="15" minlength="11" class="form-control"
-                        placeholder="Enter Account No.">
+                        placeholder="Enter Account No." value="<?php echo $row['bank_accno']; ?>">
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Account Type</label>
                       <select name="bankacctype" class="form-control">
                         <!-- <option></option> -->
-                        <option>Savings account</option>
-                        <option>Current account</option>
-                        <option>Personal account</option>
-                        <option>Fixed deposit account</option>
+                        <option value="Savings account" <?php if ($row['bank_acctype'] == 'Savings account')
+                          echo 'selected'; ?> >Savings account</option>
+                        <option value="Current account" <?php if ($row['bank_acctype'] == 'Current account')
+                          echo 'selected'; ?> >Current account</option>
+                        <option value="Personal account" <?php if ($row['bank_acctype'] == 'Personal account')
+                          echo 'selected'; ?> >Personal account</option>
+                        <option value="Fixed deposit account" <?php if ($row['bank_acctype'] == 'Fixed deposit account')
+                          echo 'selected'; ?> >Fixed deposit account</option>
                       </select>
                     </div>
 
