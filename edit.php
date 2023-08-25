@@ -35,7 +35,7 @@
         <div class="container-fluid">
           <div>
             <a class="btn btn-primary float-right" href="employee_list.php" role="button"><i
-                class="fa-solid fa-backward"></i></a>
+                class="fa-solid fa-backward fa-bounce"></i></a>
           </div>
           <br>
           <div class="row">
