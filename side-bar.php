@@ -73,7 +73,8 @@
               </p>
             </a>
           </li> -->
-          <li class="nav-item">
+                   
+          <li class="nav-item"> 
             <a href="leave_list.php" class="nav-link">
             <i class="nav-icon right fas fa-angle-left"></i>
               <p>

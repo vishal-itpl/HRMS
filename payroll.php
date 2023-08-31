@@ -7,12 +7,9 @@
     <title>HR Velocity | Payroll</title>
     <?php include './css/style.php'; ?>
 </head>
-
 <body class="hold-transition sidebar-mini">
-
     <?php include 'nav-bar.php'; ?>
     <?php include 'side-bar.php'; ?>
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -31,11 +28,8 @@
                 </div>
             </div><!-- /.container-fluid -->
         </section>
-
         <!-- Main content -->
         <section class="content">
-
-
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">Employee List</h2>
@@ -44,7 +38,6 @@
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
-
                             <tr>
                                 <th>Sr No.</th>
                                 <th>Employee Name</th>
@@ -64,23 +57,9 @@
                                 <td>17</td>
                                 <td>
                                     <button type="button" class="btn btn-primary btn-md">Pay
-                                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                                        <i class="fa-solid"></i>
                                     </button>
                                 </td>
-                                <!-- <td>
-                  
-                  <button type="button" class="btn btn-primary btn-sm">View
-                    <i class="fa-solid fa-eye"></i>
-
-                  </button>
-                  <button type="button" class="btn btn-primary btn-sm">Edit
-                    <i class="fa-solid fa-pen-to-square"></i>
-                  </button>
-                  
-                  <button type="button" class="btn btn-danger btn-sm">Delete
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td> -->
                             </tr>
                             <tr>
                                 <td>2</td>
@@ -93,20 +72,6 @@
                                         <i class="fa-solid fa-indian-rupee-sign"></i>
                                     </button>
                                 </td>
-                                <!-- <td>
-                  
-                  <button type="button" class="btn btn-primary btn-sm">View
-                    <i class="fa-solid fa-eye"></i>
-
-                  </button>
-                  <button type="button" class="btn btn-primary btn-sm">Edit
-                    <i class="fa-solid fa-pen-to-square"></i>
-                  </button>
-                  
-                  <button type="button" class="btn btn-danger btn-sm">Delete
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td> -->
                             </tr>
                             <tr>
                                 <td>3</td>
@@ -119,20 +84,6 @@
                                         <i class="fa-solid fa-indian-rupee-sign"></i>
                                     </button>
                                 </td>
-                                <!-- <td>
-                  
-                  <button type="button" class="btn btn-primary btn-sm">View
-                    <i class="fa-solid fa-eye"></i>
-
-                  </button>
-                  <button type="button" class="btn btn-primary btn-sm">Edit
-                    <i class="fa-solid fa-pen-to-square"></i>
-                  </button>
-                  
-                  <button type="button" class="btn btn-danger btn-sm">Delete
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td> -->
                             </tr>
                             <tr>
                                 <td>4</td>
@@ -145,20 +96,6 @@
                                         <i class="fa-solid fa-indian-rupee-sign"></i>
                                     </button>
                                 </td>
-                                <!-- <td>
-                  
-                  <button type="button" class="btn btn-primary btn-sm">View
-                    <i class="fa-solid fa-eye"></i>
-
-                  </button>
-                  <button type="button" class="btn btn-primary btn-sm">Edit
-                    <i class="fa-solid fa-pen-to-square"></i>
-                  </button>
-                  
-                  <button type="button" class="btn btn-danger btn-sm">Delete
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td> -->
                             </tr>
                             <tr>
                                 <td>5</td>
@@ -171,78 +108,7 @@
                                         <i class="fa-solid fa-indian-rupee-sign"></i>
                                     </button>
                                 </td>
-                                <!-- <td>
-                  
-                  <button type="button" class="btn btn-primary btn-sm">View
-                    <i class="fa-solid fa-eye"></i>
-
-                  </button>
-                  <button type="button" class="btn btn-primary btn-sm">Edit
-                    <i class="fa-solid fa-pen-to-square"></i>
-                  </button>
-                  
-                  <button type="button" class="btn btn-danger btn-sm">Delete
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td> -->
                             </tr>
-                            <!-- <tr>
-                    <td>6</td>
-                    <td>1006</td>
-                    <td>Rahul Sharma</td>
-                    <td>12A, Rajiv Nagar, Mumbai, Maharashtra, 400001</td>
-                    <td>rahul.sharma@example.com</td>
-                    <td>+91 98765 43210</td>
-                </tr>
-                <tr>
-                <td>7</td>
-                <td>1007</td>
-                <td>Pooja Patel</td>
-                <td>56B, Nehru Road, Ahmedabad, Gujarat, 380001</td>
-                <td>pooja.patel@example.com</td>
-                <td>+91 87654 32109</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>1008</td>
-                <td>Aditya Singh</td>
-                <td>34C, Vivek Vihar, Delhi, Delhi, 110001</td>
-                <td>aditya.singh@example.com</td>
-                <td>+91 76543 21098</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>1009</td>
-                <td>Deepika Gupta</td>
-                <td>78D, Shanti Nagar, Bengaluru, Karnataka, 560001</td>
-                <td>deepika.gupta@example.com</td>
-                <td>+91 87654 32107</td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>1010</td>
-                <td>Vivek Rajan</td>
-                <td>23/4, Lake View Colony, Chennai, Tamil Nadu, 600001</td>
-                <td>vivek.rajan@example.com</td>
-                <td>+91 76543 21098</td>
-            </tr>
-            <tr>
-                <td>11</td>
-                <td>1011</td>
-                <td>Sneha Sharma</td>
-                <td>45A, Gandhi Nagar, Kolkata, West Bengal, 700001</td>
-                <td>sneha.sharma@example.com</td>
-                <td>+91 87654 32106</td>
-            </tr>
-            <tr>
-                <td>12</td>
-                <td>1012</td>
-                <td>Manish Kapoor</td>
-                <td>67B, Civil Lines, Jaipur, Rajasthan, 302001</td>
-                <td>manish.kapoor@example.com</td>
-                <td>+91 76543 21095</td>
-            </tr> -->
-
                         </tbody>
 
                     </table>
@@ -260,11 +126,9 @@
     <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-
     <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-
     <!-- jQuery -->
     <?php include './js/js.php'; ?>
     <!-- Page specific script -->
@@ -281,26 +145,6 @@
                 "responsive": true,
             });
         });
-
-    // $('button').click(function () {
-    //     Swal.fire({
-    //         title: 'Are you sure?',
-    //         text: "You won't be able to revert this!",
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonColor: '#3085d6',
-    //         cancelButtonColor: '#d33',
-    //         confirmButtonText: 'Yes, delete it!'
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             Swal.fire(
-    //                 'Deleted!',
-    //                 'Your record has been deleted.',
-    //                 'success'
-    //             )
-    //         }
-    //     })
-    // })
     </script>
 </body>
 

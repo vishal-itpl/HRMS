@@ -1,0 +1,9 @@
+Leave-Application Query:
+-- INSERT statement with corrected values
+INSERT INTO leave_applications (emp_id, leave_type, from_date, to_date, description) 
+VALUES (1, 'Sick Leave', '2023-08-31', '2023-09-03', 'test');
+
+-- SELECT statement with placeholders (assuming this will be part of your PHP code)
+SELECT emp_info.emp_id, '$leaveType', '$fromDate', '$toDate', '$desc' 
+FROM emp_info 
+WHERE emp_info.emp_id = '$empId';

@@ -38,8 +38,11 @@
 
       <div class="card">
         <div class="card-header">
-          <h2 class="card-title">Employee List</h2>
+          <h2 class="card-title">Employee Leaves</h2>
         </div>
+        <?php
+
+        ?>
         <!-- /.card-header -->
         <div class="card-body">
           <table id="example1" class="table table-bordered table-striped">
@@ -58,6 +61,15 @@
               </tr>
             </thead>
             <tbody>
+              <?php 
+              $sql= "Select * from leave_application";
+              $result= mysqli_query($con, $sql);
+              if($result){
+                $counter = 1;
+                while($row = mysqli_fetch_assoc($result)){
+                }
+              }
+              ?>
               <tr>
                 <td>1</td>
                 <td>1001</td>
@@ -253,63 +265,6 @@
 
                 </td>
               </tr>
-              <!-- <tr>
-                    <td>6</td>
-                    <td>1006</td>
-                    <td>Rahul Sharma</td>
-                    <td>12A, Rajiv Nagar, Mumbai, Maharashtra, 400001</td>
-                    <td>rahul.sharma@example.com</td>
-                    <td>+91 98765 43210</td>
-                </tr>
-                <tr>
-                <td>7</td>
-                <td>1007</td>
-                <td>Pooja Patel</td>
-                <td>56B, Nehru Road, Ahmedabad, Gujarat, 380001</td>
-                <td>pooja.patel@example.com</td>
-                <td>+91 87654 32109</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>1008</td>
-                <td>Aditya Singh</td>
-                <td>34C, Vivek Vihar, Delhi, Delhi, 110001</td>
-                <td>aditya.singh@example.com</td>
-                <td>+91 76543 21098</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>1009</td>
-                <td>Deepika Gupta</td>
-                <td>78D, Shanti Nagar, Bengaluru, Karnataka, 560001</td>
-                <td>deepika.gupta@example.com</td>
-                <td>+91 87654 32107</td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>1010</td>
-                <td>Vivek Rajan</td>
-                <td>23/4, Lake View Colony, Chennai, Tamil Nadu, 600001</td>
-                <td>vivek.rajan@example.com</td>
-                <td>+91 76543 21098</td>
-            </tr>
-            <tr>
-                <td>11</td>
-                <td>1011</td>
-                <td>Sneha Sharma</td>
-                <td>45A, Gandhi Nagar, Kolkata, West Bengal, 700001</td>
-                <td>sneha.sharma@example.com</td>
-                <td>+91 87654 32106</td>
-            </tr>
-            <tr>
-                <td>12</td>
-                <td>1012</td>
-                <td>Manish Kapoor</td>
-                <td>67B, Civil Lines, Jaipur, Rajasthan, 302001</td>
-                <td>manish.kapoor@example.com</td>
-                <td>+91 76543 21095</td>
-            </tr> -->
-
             </tbody>
 
           </table>
@@ -318,20 +273,12 @@
       </div>
       <!-- /.card -->
   </div>
-  <!-- /.col -->
   </div>
-  <!-- /.row -->
   </div>
-  <!-- /.container-fluid -->
   </section>
-  <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-
-  <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
-
   <!-- jQuery -->
   <?php include './js/js.php'; ?>
   <!-- Page specific script -->

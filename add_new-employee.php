@@ -53,7 +53,7 @@
                   <div class="card-body">
                     <div class="form-group col-12">
                       <label for="Name">Employee Name</label>
-                      <input type="text" name="name" class="form-control" placeholder="Enter Employee Name" value="Vishal Kewalramani">
+                      <input type="text" name="name" class="form-control" placeholder="Enter Employee Name" value="">
                     </div>
                     <!-- <div class="form-group col-12"> -->
                       <!-- <label for="Name">Employee Id</label> -->
@@ -84,12 +84,12 @@
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Email Address</label>
-                      <input type="email" name="email" class="form-control" value="vishal@mail.com" placeholder="Enter Email Address">
+                      <input type="email" name="email" class="form-control" value="" placeholder="Enter Email Address">
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Mobile No.</label>
                       <input name="number" type="text" class="form-control" maxlength="10"
-                        placeholder="Enter Mobile No." value="9874563210">
+                        placeholder="Enter Mobile No." value="">
                     </div>
                     <div class="form-group col-12">
                       <label for="Name">Password</label>
@@ -122,20 +122,20 @@
                     <div class="form-group">
                       <label for="exampleInputPassword1">Salary</label>
                       <input type="text" name="salary" class="form-control" id="exampleInputsalary1"
-                        placeholder="Salary" value="35000">
+                        placeholder="Salary" value="">
                     </div>
                     <label for="emergency" style="margin-left: 0px;">Emergency Contact</label>
                     <div class="form-group col-12">
                       <label for="emgname">Name</label>
-                      <input type="text" name="emgname" class="form-control" value="Ash" placeholder="Enter Name">
+                      <input type="text" name="emgname" class="form-control" value="" placeholder="Enter Name">
                     </div>
                     <div class="form-group col-12">
                       <label for="relation">Relation with employee</label>
-                      <input type="text" name="emgrltn" class="form-control" value="Brother" placeholder="Enter relation with employee">
+                      <input type="text" name="emgrltn" class="form-control" value="" placeholder="Enter relation with employee">
                     </div>
                     <div class="form-group col-12">
                       <label for="contact">Contact No.</label>
-                      <input type="text" name="emgno" value="7412589654" class="form-control" maxlength="10"
+                      <input type="text" name="emgno" value="" class="form-control" maxlength="10"
                         placeholder="Enter Mobile No.">
                     </div>
 

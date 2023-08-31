@@ -139,13 +139,7 @@
           cancelButtonColor: '#d33',
           confirmButtonText: 'Yes, delete it!'
           <?php
-          include 'connections.php';
-
-          echo "<pre>";
-          print_r($GLOBALS);
-          echo "</pre>";
-          // die();
-          
+          include 'connections.php';    
           if (isset($_REQUEST['deleteid'])) {
             $employee_ID = $_REQUEST['deleteid'];
 
@@ -155,7 +149,7 @@
 
             $result = mysqli_query($con, $sql);
             if ($result) {
-              echo "Deleted Successfully!!";
+              echo "";
             } else {
               die(mysqli_error($con));
             }

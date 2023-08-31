@@ -48,38 +48,41 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form id="quickForm">
+                            <form id="quickForm" method="POST" action="">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Type of Leave</label>
-                                        <select class="form-control">
-                                            <option>Sick Leave</option>
-                                            <option>Annual Leave</option>
-                                            <option>Personal Leave</option>
-                                            <option>Work from Home Leave</option>
+                                        <select name="leave" class="form-control">
+                                            <option value="Sick Leave">Sick Leave</option>
+                                            <option value="Annual Leave">Annual Leave</option>
+                                            <option value="Personal Leave">Personal Leave</option>
+                                            <option value="Work from Home Leave">Work from Home Leave</option>
                                         </select>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Date range:</label>
-
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
                                                     <i class="far fa-calendar-alt"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" class="form-control float-right" id="reservation">
+                                            <!-- <input type="text" class="form-control float-right" id="reservation"
+                                                name="reservation"> -->
+                                            <input type="text" class="form-control float-right" id="reservation"
+                                                name="reservation">
+
                                         </div>
                                         <!-- /.input group -->
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Description</label>&nbsp;<i class="fa-solid fa-asterisk fa-2xs" style="color: #ff0000;"></i>
-                                        <textarea name="desc" class="form-control" rows="3"
-                                            placeholder="Enter Description here..." required></textarea>
+                                        <label>Description</label>&nbsp;<i class="fa-solid fa-asterisk fa-2xs"
+                                            style="color: #ff0000;"></i>
+                                        <textarea name="desc" class="form-control" rows="2"
+                                            placeholder="Enter Description here..." minlength="25" required></textarea>
                                     </div>
-
                                 </div>
 
                                 <div class=" text-center">
@@ -87,114 +90,84 @@
                                 </div>
                                 <br>
                         </div>
-                        <!-- /.card-body -->
+                        <?php
+                        include 'connections.php';
+                        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                            $selectedDates = explode(" - ", $_POST["reservation"]);
+                            // print_r($selectedDates);
+                            $fromDate = date("Y-m-d", strtotime($selectedDates[0]));
+                            $toDate = date("Y-m-d", strtotime($selectedDates[1]));
+
+                            // Extract other form data
+                            $leaveType = $_POST["leave"];
+                            $desc = $_POST["desc"];
+
+                            // Get emp_id from emp_info table
+                            $sql = "SELECT emp_id FROM emp_info";
+
+                            $result = mysqli_query($con, $sql);
+
+                            if (mysqli_num_rows($result) > 0) {
+                                $row = mysqli_fetch_assoc($result);
+
+                                $empId = $row['emp_id'];
+                            } else {
+                                echo "No record found";
+                            }
+                            // Insert data into the leave_application table
+                            $query = "INSERT INTO leave_application (emp_id, leave_type, from_date, to_date, description) 
+              VALUES ('$empId', '$leaveType', '$fromDate', '$toDate', '$desc')";
+
+                            if (mysqli_query($con, $query)) {
+                                echo "Form data inserted successfully!";
+                            } else {
+                                echo "Error inserting form data: " . mysqli_error($con);
+                            }
+                            // Close the database connection
+                            mysqli_close($con);
+                        }
+                        ?>
                         </form>
                     </div>
-                    <!-- /.card -->
                 </div>
-                <!--/.col (left) -->
-                <!-- right column -->
                 <div class="col-md-6">
-
                 </div>
-                <!--/.col (right) -->
             </div>
-            <!-- /.row -->
-    </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
     </div>
-
+    </section>
+    </div>
     <?php include './js/js.php'; ?>
     <script>
         $(function () {
             $.validator.setDefaults({
                 submitHandler: function () {
-                    alert("Form successful submitted!");
+                    var selectedDates = $('#reservation').val();
+                    var leaveType = $('select[name="leave"]').val();
+                    var desc = $('textarea[name="desc"]').val();
+                    var empId = $('input[name="emp_id"]').val(); // Make sure to add the input field for emp_id
+
+                    $.ajax({
+                        type: 'POST', // Use POST method
+                        url: 'submit_leave.php',
+                        data: {
+                            reservation: selectedDates,
+                            leave: leaveType,
+                            desc: desc,
+                            emp_id: empId
+                        },
+                        success: function (response) {
+                            alert("Form submitted successfully!");
+                        },
+                        error: function () {
+                            alert("An error occurred while submitting the form.");
+                        }
+                    });
                 }
             });
-            //Date range picker
+            // Date range picker
             $('#reservation').daterangepicker({
                 locale: {
-                    format: 'DD/MM/YYYY'
-                }
-            })
-            
-            $('#quickForm').validate({
-                rules: {
-                    name: {
-                        required: true,
-                        name: true,
-                    },
-                    email: {
-                        required: true,
-                        email: true,
-                    },
-                    number: {
-                        required: true,
-                        minlength: 5
-                    },
-                    dob: {
-                        required: true,
-                        date: true,
-                    },
-                    doj: {
-                        required: true,
-                        date: true,
-                    },
-                    address: {
-                        required: true,
-                        address: true,
-                    },
-                    salary: {
-                        required: true,
-                        salary: true,
-                    },
-                    terms: {
-                        required: true
-                    },
-                },
-                messages: {
-                    name: {
-                        required: "Please enter Name",
-                        name: "Please enter a valid Name"
-                    },
-                    email: {
-                        required: "Please enter a email address",
-                        email: "Please enter a valid email address"
-                    },
-                    number: {
-                        required: "Please provide a Mobile No.",
-                        minlength: "Your number must contain 10 digits"
-                    },
-                    dob: {
-                        required: "Please provide a valid date of birth",
-                        date: true,
-                    },
-                    doj: {
-                        required: "Please provide a valid date of joining",
-                        date: true,
-                    },
-                    address: {
-                        required: "Please provide a address",
-                        address: "Please enter a valid  address"
-                    },
-                    salary: {
-                        required: "Please enter salary",
-                        salary: "Please enter a valid  salary"
-                    },
-                    terms: "Please accept our terms"
-                },
-                errorElement: 'span',
-                errorPlacement: function (error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
+                    format: 'MM/DD/YYYY'
                 }
             });
         });
