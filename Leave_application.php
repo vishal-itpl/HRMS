@@ -85,9 +85,16 @@
                                     </div>
                                 </div>
 
-                                <div class=" text-center">
+                                <!-- <div class=" text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>
+                                </div> -->
+                                <div class=" text-center">
+                                    <button type="submit" class="btn btn-primary" id="submitButton">
+                                        Submit
+                                    </button>
+                                    
                                 </div>
+
                                 <br>
                         </div>
                         <?php
@@ -100,7 +107,8 @@
 
                             // Extract other form data
                             $leaveType = $_POST["leave"];
-                            $desc = $_POST["desc"];
+                            // $desc = mysqli_escape_string($_POST["desc"]);
+                            $description = mysqli_real_escape_string($con, $_POST["desc"]);
 
                             // Get emp_id from emp_info table
                             $sql = "SELECT emp_id FROM emp_info";
@@ -115,9 +123,8 @@
                                 echo "No record found";
                             }
                             // Insert data into the leave_application table
-                            $query = "INSERT INTO leave_application (emp_id, leave_type, from_date, to_date, description) 
-              VALUES ('$empId', '$leaveType', '$fromDate', '$toDate', '$desc')";
-
+                            echo $query = "INSERT INTO leave_application (emp_id, leave_type, from_date, to_date, description) 
+              VALUES ('$empId', '$leaveType', '$fromDate', '$toDate', '$description')";
                             if (mysqli_query($con, $query)) {
                                 echo "Form data inserted successfully!";
                             } else {
@@ -137,41 +144,73 @@
     </section>
     </div>
     <?php include './js/js.php'; ?>
-    <script>
-        $(function () {
-            $.validator.setDefaults({
-                submitHandler: function () {
-                    var selectedDates = $('#reservation').val();
-                    var leaveType = $('select[name="leave"]').val();
-                    var desc = $('textarea[name="desc"]').val();
-                    var empId = $('input[name="emp_id"]').val(); // Make sure to add the input field for emp_id
+</body>
+<script>
+        $(document).ready(function () {
+    // Initialize the date range picker
+    $('#reservation').daterangepicker({
+        locale: {
+            format: 'MM/DD/YYYY'
+        }
+    });
 
-                    $.ajax({
-                        type: 'POST', // Use POST method
-                        url: 'submit_leave.php',
-                        data: {
-                            reservation: selectedDates,
-                            leave: leaveType,
-                            desc: desc,
-                            emp_id: empId
-                        },
-                        success: function (response) {
-                            alert("Form submitted successfully!");
-                        },
-                        error: function () {
-                            alert("An error occurred while submitting the form.");
+    // Bind a function to the form's submit event
+    $('#quickForm').on('submit', function (e) {
+        e.preventDefault(); // Prevent the form from submitting normally
+
+        // Perform form validation
+        var leaveType = $('select[name="leave"]').val();
+        var dateRange = $('input[name="reservation"]').val();
+        var description = $('textarea[name="desc"]').val();
+
+        if (leaveType === "" || dateRange === "" || description === "") {
+            // Display an error message using SweetAlert
+            Swal.fire({
+                icon: 'error',
+                title: 'Validation Error',
+                text: 'Please fill out all fields.',
+            });
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: 'leave_application.php', 
+                data: $('#quickForm').serialize(),
+                success: function (response) {
+                    console.log('Form submission successful:', response);
+
+                    // Display success message using SweetAlert
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your form has been submitted',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    // Clear form fields after successful submission
+                    $('#quickForm')[0].reset();
+
+                    // date range picker
+                    $('#reservation').daterangepicker({
+                        locale: {
+                            format: 'MM/DD/YYYY'
                         }
+                    });
+                },
+                error: function (error) {
+                    console.error('Form submission error:', error);
+
+                    //  error message using SweetAlert
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Form submission failed. Please try again later.',
                     });
                 }
             });
-            // Date range picker
-            $('#reservation').daterangepicker({
-                locale: {
-                    format: 'MM/DD/YYYY'
-                }
-            });
-        });
-    </script>
-</body>
+        }
+    });
+});
 
+    </script>
 </html>

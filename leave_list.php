@@ -50,35 +50,53 @@
 
               <tr>
                 <th>Sr No.</th>
-                <th>Employee No.</th>
+                <th>Employee Id.</th>
                 <th>Employee Name</th>
                 <th>Date</th>
                 <th>Type</th>
                 <th>Start Date</th>
                 <th>End Date</th>
-                <th>End Date</th>
+                <th>Description</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              <?php 
-              $sql= "Select * from leave_application";
-              $result= mysqli_query($con, $sql);
-              if($result){
+              <?php
+              require_once'connections.php';
+              $sql = "SELECT
+              leave_application.leave_type,
+              leave_application.from_date,
+              leave_application.to_date,
+              leave_application.description,
+              emp_info.emp_id,
+              emp_info.emp_name
+          FROM
+              leave_application,
+              emp_info;";
+              $result = mysqli_query($con, $sql);
+              if ($result) {
                 $counter = 1;
-                while($row = mysqli_fetch_assoc($result)){
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $employee_ID = $row['emp_id'];
+                    $employee_name = $row['emp_name'];
+                    $leave_type = $row['leave_type'];
+                    $from_date = $row['from_date'];
+                    $to_date = $row['to_date'];
+                    $description = $row['description'];
                 }
-              }
+                }
+              
               ?>
               <tr>
-                <td>1</td>
-                <td>1001</td>
-                <td>Manish Kapoor</td>
-                <td>09-07-2023</td>
-                <td>Sick Leave</td>
-                <td>10-07-2023</td>
-                <td>11-07-2023</td>
-                <td>
+                <td><?php echo $counter++; ?></td>
+                <td><?php echo $employee_ID; ?></td>
+                <td><?php echo $employee_name; ?></td>
+                <td></td>
+                <td><?php echo $leave_type; ?></td>
+                <td><?php echo $from_date; ?></td>
+                <td><?php echo $to_date; ?></td>
+                <td><?php echo $description; ?></td>
+                <!-- <td>
                   <div class="modal fade" id="modal-lg1">
                     <div class="modal-dialog modal-lg">
                       <div class="modal-content">
@@ -101,11 +119,11 @@
 
                         </div>
                       </div>
-                      <!-- /.modal-content -->
+                      
                     </div>
-                    <!-- /.modal-dialog -->
+                    
                   </div>
-                </td>
+              </td>-->
                 <td>
                   <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg1">View
                   </button>
@@ -120,151 +138,7 @@
 
                 </td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>1002</td>
-                <td>Aditya Singh</td>
-                <td>13-07-2023</td>
-                <td>Personal Leave</td>
-                <td>15-07-2023</td>
-                <td>18-07-2023</td>
-                <td>
-                  <div class="modal fade" id="modal-lg2">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title">Large Modal</h4>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <p>Name: Aditya Singh&hellip;</p>
-                          <p>One fine body&hellip;</p>
-                          <p>One fine body&hellip;</p>
-                          <p>One fine body&hellip;</p>
-                          <p>One fine body&hellip;</p>
-                          <p>One fine body&hellip;</p>
-                        </div>
-                        <div class="modal-footer justify-content-between">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-                        </div>
-                      </div>
-                      <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                  </div>
-                </td>
-
-                <td>
-                  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg2">View
-                  </button>
-                  <!-- Edit button -->
-                  <button type="button" class="btn btn-primary btn-sm mr-1">Approve
-
-
-                  </button>
-                  <button type="button" class="btn btn-danger btn-sm mr-1">Reject
-
-                  </button>
-
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>1003</td>
-                <td>Freddie Rahman</td>
-                <td>14-07-2023</td>
-                <td>Emergency Leave</td>
-                <td>14-07-2023</td>
-                <td>14-07-2023</td>
-                <td>
-                  <div class="modal fade" id="modal-lg3">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title">Large Modal</h4>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <p>Name: Freddie Rahman&hellip;</p>
-                          <p>One fine body&hellip;</p>
-                          <p>One fine body&hellip;</p>
-                          <p>One fine body&hellip;</p>
-                          <p>One fine body&hellip;</p>
-                          <p>One fine body&hellip;</p>
-                        </div>
-                        <div class="modal-footer justify-content-between">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-                        </div>
-                      </div>
-                      <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                  </div>
-                </td>
-
-                <td>
-                  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg3">View
-                  </button>
-                  <!-- Edit button -->
-                  <button type="button" class="btn btn-primary btn-sm mr-1">Approve
-
-
-                  </button>
-                  <button type="button" class="btn btn-danger btn-sm mr-1">Reject
-
-                  </button>
-
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>1004</td>
-                <td>Deepika Gupta</td>
-                <td>22-07-2023</td>
-                <td>Personal Leave</td>
-                <td>25-07-2023</td>
-                <td>26-07-2023</td>
-                <td>26-07-2023</td>
-
-                <td>
-                  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg">View
-                  </button></button>
-                  <!-- Edit button -->
-                  <button type="button" class="btn btn-primary btn-sm mr-1">Approve</button>
-                  <button type="button" class="btn btn-danger btn-sm mr-1">Reject</button>
-
-                </td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>1005</td>
-                <td>Pooja Patel</td>
-                <td>20-07-2023</td>
-                <td>Work From Home Leave</td>
-                <td>21-07-2023</td>
-                <td>21-07-2023</td>
-                <td>21-07-2023</td>
-
-                <td>
-                  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg">View
-                  </button>
-                  <!-- Edit button -->
-                  <button type="button" class="btn btn-primary btn-sm mr-1">Approve
-
-
-                  </button>
-                  <button type="button" class="btn btn-danger btn-sm mr-1">Reject
-
-                  </button>
-
-                </td>
-              </tr>
             </tbody>
 
           </table>
