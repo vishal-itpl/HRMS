@@ -53,7 +53,7 @@
                 <th>Employee Id.</th>
                 <th>Employee Name</th>
                 <th>Applied Date</th>
-                <th>Type</th>
+                <th>Leave Type</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Description</th>
