@@ -52,7 +52,7 @@
                 <th>Sr No.</th>
                 <th>Employee Id.</th>
                 <th>Employee Name</th>
-                <th>Date</th>
+                <th>Applied Date</th>
                 <th>Type</th>
                 <th>Start Date</th>
                 <th>End Date</th>
@@ -68,6 +68,7 @@
               leave_application.from_date,
               leave_application.to_date,
               leave_application.description,
+              leave_application.app_date,
               emp_info.emp_id,
               emp_info.emp_name
           FROM
@@ -79,6 +80,7 @@
                 while ($row = mysqli_fetch_assoc($result)) {
                     $employee_ID = $row['emp_id'];
                     $employee_name = $row['emp_name'];
+                    $applied_date = $row['app_date'];
                     $leave_type = $row['leave_type'];
                     $from_date = $row['from_date'];
                     $to_date = $row['to_date'];
@@ -91,7 +93,7 @@
                 <td><?php echo $counter++; ?></td>
                 <td><?php echo $employee_ID; ?></td>
                 <td><?php echo $employee_name; ?></td>
-                <td></td>
+                <td><?php echo $applied_date; ?></td>
                 <td><?php echo $leave_type; ?></td>
                 <td><?php echo $from_date; ?></td>
                 <td><?php echo $to_date; ?></td>

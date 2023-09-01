@@ -123,8 +123,8 @@
                                 echo "No record found";
                             }
                             // Insert data into the leave_application table
-                            echo $query = "INSERT INTO leave_application (emp_id, leave_type, from_date, to_date, description) 
-              VALUES ('$empId', '$leaveType', '$fromDate', '$toDate', '$description')";
+                            $query = "INSERT INTO leave_application (emp_id, leave_type, from_date, to_date, description, app_date) 
+          VALUES ('$empId', '$leaveType', '$fromDate', '$toDate', '$description', NOW())"; 
                             if (mysqli_query($con, $query)) {
                                 echo "Form data inserted successfully!";
                             } else {
