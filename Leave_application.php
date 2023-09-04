@@ -12,10 +12,9 @@
         }
     </style>
 </head>
-
 <body>
-    <?php include 'nav-bar.php'; ?>
-    <?php include 'side-bar.php'; ?>
+    <?php include 'nav-bar.php';?>
+    <?php include 'side-bar.php';?>
 
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->

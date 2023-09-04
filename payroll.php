@@ -7,6 +7,7 @@
     <title>HR Velocity | Payroll</title>
     <?php include './css/style.php'; ?>
 </head>
+
 <body class="hold-transition sidebar-mini">
     <?php include 'nav-bar.php'; ?>
     <?php include 'side-bar.php'; ?>
@@ -32,28 +33,63 @@
         <section class="content">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Employee List</h2>
+                    <h2 class="card-title">Employee Payroll List</h2>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
+                            
                             <tr>
                                 <th>Sr No.</th>
                                 <th>Employee Name</th>
-                                <th>Employee No.</th>
                                 <th>Amount</th>
                                 <th>Present Days</th>
-                                <!-- <th>Mobile No.</th> -->
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                        <?php
+                            require_once 'connections.php';
+                            $sql = "SELECT
+            --   leave_application.leave_type,
+            --   leave_application.from_date,
+            --   leave_application.to_date,
+            --   leave_application.description,
+            --   leave_application.app_date,
+              emp_info.emp_id,
+              emp_info.emp_name,
+              emp_info.emp_salary
+          FROM
+            --   leave_application,
+              emp_info;";
+                            $result = mysqli_query($con, $sql);
+                            if ($result) {
+                                $counter = 1;
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    $employee_name = $row['emp_name'];
+                                    $employee_salary = $row['emp_salary'];
+                                    // Inside the loop, create a new table row for each record
+                                    echo "<tr>";
+                                    echo "<td>" . $counter++ . "</td>";
+                                    echo "<td>" . $employee_name . "</td>";
+                                    echo "<td>" . $employee_salary . "</td>";
+                                    echo "<td>17</td>";
+                                    echo "<td>";
+                                    echo "<button type='button' class='btn btn-primary btn-md'>Pay <i class='fa-solid'></i></button>";
+                                    echo "</td>";
+                                    echo "</tr>";
+                                }
+                            }
+                                
+                        
+
+                            ?>
                             <tr>
-                                <td>1</td>
-                                <td>Ravi Gupta</td>
-                                <td>1001</td>
-                                <td>12000</td>
+                                <td><?php echo $counter++; ?></td>
+                                <td><?php echo $employee_name; ?></td>
+                                <!-- <td>1001</td> -->
+                                <td><?php echo $employee_salary; ?></td>
                                 <td>17</td>
                                 <td>
                                     <button type="button" class="btn btn-primary btn-md">Pay
@@ -61,54 +97,7 @@
                                     </button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Vijay Shah</td>
-                                <td>1002</td>
-                                <td>18000</td>
-                                <td>20</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-md">Pay
-                                        <i class="fa-solid fa-indian-rupee-sign"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Shailesh Rungta</td>
-                                <td>1003</td>
-                                <td>20000</td>
-                                <td>18</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-md">Pay
-                                        <i class="fa-solid fa-indian-rupee-sign"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Kaveri Singh</td>
-                                <td>1004</td>
-                                <td>15000</td>
-                                <td>19</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-md">Pay
-                                        <i class="fa-solid fa-indian-rupee-sign"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Anjali Desai</td>
-                                <td>1005</td>
-                                <td>22000</td>
-                                <td>22</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-md">Pay
-                                        <i class="fa-solid fa-indian-rupee-sign"></i>
-                                    </button>
-                                </td>
-                            </tr>
+
                         </tbody>
 
                     </table>
@@ -133,7 +122,7 @@
     <?php include './js/js.php'; ?>
     <!-- Page specific script -->
     <script>
-        $(function () {
+        $(function() {
             $("#example1").DataTable();
             $('#example2').DataTable({
                 "paging": true,

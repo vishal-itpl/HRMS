@@ -76,9 +76,10 @@
                    
           <li class="nav-item"> 
             <a href="leave_list.php" class="nav-link">
+              <i class="nav-icon fa-regular fa-calendar-plus fa-bounce"></i>
             <i class="nav-icon right fas fa-angle-left"></i>
               <p>
-                Leave Management
+                Leave Module
               </p>
             </a>
              <ul class="nav nav-treeview">
@@ -97,7 +98,6 @@
                   </a>
                 </li>
              </ul>
-
           </li> 
           <li class="nav-item">
             <a href="projects.php" class="nav-link">
