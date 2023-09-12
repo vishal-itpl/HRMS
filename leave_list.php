@@ -63,6 +63,7 @@
             <tbody>
             <?php
 require_once 'connections.php';
+
 $sql = "SELECT
   leave_application.leave_type,
   leave_application.from_date,
@@ -72,9 +73,12 @@ $sql = "SELECT
   emp_info.emp_id,
   emp_info.emp_name
 FROM
-  leave_application,
-  emp_info;";
+  leave_application
+JOIN
+  emp_info ON leave_application.emp_id = emp_info.emp_id";
+
 $result = mysqli_query($con, $sql);
+
 if ($result) {
   $counter = 1;
   while ($row = mysqli_fetch_assoc($result)) {
@@ -105,6 +109,7 @@ if ($result) {
   }
 }
 ?>
+
             </tbody>
           </table>
         </div>

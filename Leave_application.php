@@ -53,7 +53,7 @@
                                     <div class="form-group">
                                         <label>Select Employee</label>
                                         <select name="employee_id" class="form-control">
-                                            <?php
+                                        <?php
                                             // Connect to your database (make sure to include your database connection code here)
                                             require_once 'connections.php';
 
@@ -122,45 +122,36 @@
                                 </div>
                                 <br>
                         </div>
-                        <?php
+
+                        </form>
+                    </div>
+                    <?php
                         include 'connections.php';
                         if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                            // Capture the selected employee's emp_id from the form
+                            $empId = $_POST["employee_id"];
+
                             $selectedDates = explode(" - ", $_POST["reservation"]);
-                            // print_r($selectedDates);
                             $fromDate = date("Y-m-d", strtotime($selectedDates[0]));
                             $toDate = date("Y-m-d", strtotime($selectedDates[1]));
 
-                            // Extract other form data
                             $leaveType = $_POST["leave"];
-                            // $desc = mysqli_escape_string($_POST["desc"]);
                             $description = mysqli_real_escape_string($con, $_POST["desc"]);
 
-                            // Get emp_id from emp_info table
-                            $sql = "SELECT emp_id FROM emp_info";
-
-                            $result = mysqli_query($con, $sql);
-
-                            if (mysqli_num_rows($result) > 0) {
-                                $row = mysqli_fetch_assoc($result);
-
-                                $empId = $row['emp_id'];
-                            } else {
-                                echo "No record found";
-                            }
-                            // Insert data into the leave_application table
+                            // Insert data into the leave_application table with the selected employee's emp_id
                             $query = "INSERT INTO leave_application (emp_id, leave_type, from_date, to_date, description, app_date) 
-          VALUES ('$empId', '$leaveType', '$fromDate', '$toDate', '$description', NOW())";
+                                      VALUES ('$empId', '$leaveType', '$fromDate', '$toDate', '$description', NOW())";
+
                             if (mysqli_query($con, $query)) {
                                 echo "Form data inserted successfully!";
                             } else {
                                 echo "Error inserting form data: " . mysqli_error($con);
                             }
+
                             // Close the database connection
                             mysqli_close($con);
                         }
                         ?>
-                        </form>
-                    </div>
                 </div>
                 <div class="col-md-6">
                 </div>
