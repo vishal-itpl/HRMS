@@ -48,7 +48,7 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form id="quickForm" method="POST" action="">
+                            <form id="quickForm" method="POST" action="leave_list.php">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Select Employee</label>
@@ -87,6 +87,9 @@
                                             <option value="Annual Leave">Annual Leave</option>
                                             <option value="Personal Leave">Personal Leave</option>
                                             <option value="Work from Home Leave">Work from Home Leave</option>
+                                            <option value="Casual Leave">Casual Leave</option>
+                                            <option value="Maternity Leave">Maternity Leave</option>
+                                            <option value="Public Holidays">Public Holidays</option>
                                         </select>
                                     </div>
 
@@ -128,6 +131,7 @@
                     <?php
                         include 'connections.php';
                         if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                            header("Location:leave_list.php");
                             // Capture the selected employee's emp_id from the form
                             $empId = $_POST["employee_id"];
 
