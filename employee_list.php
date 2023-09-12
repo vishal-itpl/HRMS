@@ -43,8 +43,7 @@
             <table id="example1" class="table table-bordered table-striped">
               <thead>
                 <div>
-                  <button type="button" class="btn btn-primary btn-sm text-right"
-                    onclick="window.location.href='add_new-employee.php';">ADD New Employee</button>
+                  <button type="button" class="btn btn-primary btn-sm text-right" onclick="window.location.href='add_new-employee.php';">ADD New Employee</button>
                 </div>
                 <br>
                 <tr>
@@ -69,7 +68,7 @@
                     $employee_address = $row['emp_address'];
                     $employee_email = $row['emp_email'];
                     $employee_mob = $row['emp_mob'];
-                    ?>
+                ?>
                     <tr>
                       <td>
                         <?php echo $counter++; ?>
@@ -95,7 +94,7 @@
                         <a href="delete.php?deleteid=<?php echo $employee_ID; ?>" class="btn btn-danger btn-md">Delete</a>
                       </td>
                     </tr>
-                    <?php
+                <?php
                   }
                 }
                 ?>
@@ -116,8 +115,11 @@
   <!-- jQuery -->
   <?php include 'js/js.php'; ?>
   <script>
-    $(function () {
-      $("#example1").DataTable();
+    $(function() {
+      $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,
         "lengthChange": false,
@@ -129,7 +131,7 @@
       });
 
       // Add event listener only to the "Delete" buttons
-      $('.btn-danger').click(function () {
+      $('.btn-danger').click(function() {
         Swal.fire({
           title: 'Are you sure?',
           text: "You won't be able to revert this!",
@@ -139,7 +141,7 @@
           cancelButtonColor: '#d33',
           confirmButtonText: 'Yes, delete it!'
           <?php
-          include 'connections.php';    
+          include 'connections.php';
           if (isset($_REQUEST['deleteid'])) {
             $employee_ID = $_REQUEST['deleteid'];
 

@@ -76,6 +76,8 @@
                                     echo "<td>" . $employee_salary . "</td>";
                                     echo "<td>17</td>";
                                     echo "<td>";
+                                    echo "<button type='button' class='btn btn-primary btn-md mr-2'>View Details<i class='fa-solid'></i></button>";
+                                    echo "<button type='button' class='btn btn-primary btn-md mr-2'>Payslip <i class='fa-solid'></i></button>";
                                     echo "<button type='button' class='btn btn-primary btn-md'>Pay <i class='fa-solid'></i></button>";
                                     echo "</td>";
                                     echo "</tr>";
@@ -85,18 +87,6 @@
                         
 
                             ?>
-                            <tr>
-                                <td><?php echo $counter++; ?></td>
-                                <td><?php echo $employee_name; ?></td>
-                                <!-- <td>1001</td> -->
-                                <td><?php echo $employee_salary; ?></td>
-                                <td>17</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-md">Pay
-                                        <i class="fa-solid"></i>
-                                    </button>
-                                </td>
-                            </tr>
 
                         </tbody>
 

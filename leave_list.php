@@ -9,7 +9,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
-
+<div class="wrapper">
   <?php include 'nav-bar.php'; ?>
   <?php include 'side-bar.php'; ?>
 
@@ -61,93 +61,54 @@
               </tr>
             </thead>
             <tbody>
-              <?php
-              require_once'connections.php';
-              $sql = "SELECT
-              leave_application.leave_type,
-              leave_application.from_date,
-              leave_application.to_date,
-              leave_application.description,
-              leave_application.app_date,
-              emp_info.emp_id,
-              emp_info.emp_name
-          FROM
-              leave_application,
-              emp_info;";
-              $result = mysqli_query($con, $sql);
-              if ($result) {
-                $counter = 1;
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $employee_ID = $row['emp_id'];
-                    $employee_name = $row['emp_name'];
-                    $applied_date = $row['app_date'];
-                    $leave_type = $row['leave_type'];
-                    $from_date = $row['from_date'];
-                    $to_date = $row['to_date'];
-                    $description = $row['description'];
-                }
-                }
-              
-              ?>
-              <tr>
-                <td><?php echo $counter++; ?></td>
-                <td><?php echo $employee_ID; ?></td>
-                <td><?php echo $employee_name; ?></td>
-                <td><?php echo $applied_date; ?></td>
-                <td><?php echo $leave_type; ?></td>
-                <td><?php echo $from_date; ?></td>
-                <td><?php echo $to_date; ?></td>
-                <td><?php echo $description; ?></td>
-                <!-- <td>
-                  <div class="modal fade" id="modal-lg1">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title">Large Modal</h4>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <p>Name: Manish Kapoor&hellip;</p>
-                          <p>One fine body&hellip;</p>
-                          <p>One fine body&hellip;</p>
-                          <p>One fine body&hellip;</p>
-                          <p>One fine body&hellip;</p>
-                          <p>One fine body&hellip;</p>
-                        </div>
-                        <div class="modal-footer justify-content-between">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-                        </div>
-                      </div>
-                      
-                    </div>
-                    
-                  </div>
-              </td>-->
-                <td>
-                  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg1">View
-                  </button>
-                  <!-- Edit button -->
-                  <button type="button" class="btn btn-primary btn-sm mr-1">Approve
-
-
-                  </button>
-                  <button type="button" class="btn btn-danger btn-sm mr-1">Reject
-
-                  </button>
-
-                </td>
-              </tr>
-
+            <?php
+require_once 'connections.php';
+$sql = "SELECT
+  leave_application.leave_type,
+  leave_application.from_date,
+  leave_application.to_date,
+  leave_application.description,
+  leave_application.app_date,
+  emp_info.emp_id,
+  emp_info.emp_name
+FROM
+  leave_application,
+  emp_info;";
+$result = mysqli_query($con, $sql);
+if ($result) {
+  $counter = 1;
+  while ($row = mysqli_fetch_assoc($result)) {
+    $employee_ID = $row['emp_id'];
+    $employee_name = $row['emp_name'];
+    $applied_date = $row['app_date'];
+    $leave_type = $row['leave_type'];
+    $from_date = $row['from_date'];
+    $to_date = $row['to_date'];
+    $description = $row['description'];
+    
+    // Inside the loop, create a new table row for each record
+    echo "<tr>";
+    echo "<td>" . $counter++ . "</td>";
+    echo "<td>" . $employee_ID . "</td>";
+    echo "<td>" . $employee_name . "</td>";
+    echo "<td>" . $applied_date . "</td>";
+    echo "<td>" . $leave_type . "</td>";
+    echo "<td>" . $from_date . "</td>";
+    echo "<td>" . $to_date . "</td>";
+    echo "<td>" . $description . "</td>";
+    echo "<td>";
+    echo "<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#modal-lg1'>View</button>";
+    echo "<button type='button' class='btn btn-primary btn-sm mr-1'>Approve</button>";
+    echo "<button type='button' class='btn btn-danger btn-sm mr-1'>Reject</button>";
+    echo "</td>";
+    echo "</tr>";
+  }
+}
+?>
             </tbody>
-
           </table>
         </div>
-        <!-- /.card-body -->
       </div>
-      <!-- /.card -->
   </div>
   </div>
   </div>
@@ -191,13 +152,10 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
         </div>
       </div>
-      <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
+  </div>
   </div>
 </body>
-
 </html>
