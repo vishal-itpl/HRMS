@@ -1,4 +1,12 @@
 <?php include 'connections.php'; ?>
+<?php
+session_start();
+
+if(!isset($_SESSION['is_login'])){
+  header('Location:leave_list.php');
+ die();
+ }
+?>
 <!DOCTYPE html>
 <html lang="en">
 

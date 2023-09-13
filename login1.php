@@ -1,23 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HR Velocity | Log in</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
-
+  
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HR Velocity | Log in</title>
+    <?php require_once './css/style.php'; ?>
 </head>
-
 
 <body class="hold-transition login-page">
   <div class="login-box">
@@ -70,25 +59,15 @@
   </div>
 
 
-
-  <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap 4 -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.min.js"></script>
 </body>
 
-
-
-
 <?php
+session_start(); // Initialize the session
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "hrms";
-
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -97,16 +76,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $email = $_POST["email"];
+    $emp_email = $_POST["email"];
     $password = md5($_POST["password"]);
 
-
     // Validate credentials against the database
-    $query = "SELECT * FROM credentials WHERE email = '$email' AND password = '$password'";
+    $query = "SELECT emp_role, emp_email from emp_info WHERE emp_email='$emp_email' AND password='$password'";
     $result = mysqli_query($conn, $query);
 
+
     if ($result && mysqli_num_rows($result) > 0) {
-        // Valid credentials, redirect to the dashboard
+        $user = mysqli_fetch_assoc($result);
+        $_SESSION["emp_email"] = $user["emp_email"];
+        $_SESSION["emp_role"] = $user["emp_role"];
+           // Store user's role in session
+        // Redirect to the dashboard
         header("Location: home.php");
         exit();
     } else {
@@ -117,5 +100,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     mysqli_close($conn);
 }
 ?>
-
-    
+<?php require_once './js/js.php'; ?>

@@ -1,3 +1,28 @@
+<?php session_start();
+$error = '';
+ if (isset($_POST['emp_email']) && isset($_POST['password'])){
+ $emp_email = $_POST['emp_email'];
+$password = $_POST['password'];
+ $sql = "SELECT*FROM emp_info where emp_email ='$emp_email' and password = '$password'";
+ $result = mysqli_query($conn,$sql);
+ $count = mysqli_num_rows($result);
+ if($count>0){
+ $row = mysqli_fetch_assoc($result);
+$_SESSION['emp_role'] =$row['emp_role'];
+$_SESSION['is_login'] = "yes";
+if($row['emp_role'] == 'Admin'){
+ header('Location:home.php');
+}
+if($row['emp_role'] == 'Employee'){
+ header('Location:home.php');
+}
+ }
+else{
+$error = "please enter details";
+}
+}
+ 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +49,6 @@
 
     <!-- Main Sidebar Container -->
     <?php include 'side-bar.php'; ?>
-
     <!-- Content Wrapper. Contains page content -->
     <?php include 'wrapper(main)-content.php' ?>
     <!-- /.content-wrapper -->
@@ -41,5 +65,4 @@
     })
   </script>
 </body>
-
 </html>

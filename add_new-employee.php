@@ -106,6 +106,13 @@
                       <textarea class="form-control" name="address" rows="1" value="test" placeholder="Enter Address..."></textarea>
                     </div>
                     <div class="form-group col-12">
+                      <label for="role">Role</label>
+                      <select name="role" class="form-control">
+                        <option>Employee</option>
+                        <option>Admin</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-12">
                       <label for="Name">Position</label>
                       <select name="position" class="form-control">
                         <option>Intern</option>
@@ -113,7 +120,6 @@
                         <option>Sr. Developer</option>
                       </select>
                     </div>
-
                     <div class="form-group">
                       <label for="exampleInputJoining1">Date Of Joining</label>
                       <input type="date" name="doj" class="form-control" id="exampleInputjoining1">

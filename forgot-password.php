@@ -51,6 +51,8 @@
 <!-- /.login-box -->
 
 <?php
+$otp = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT); // Generates a 6-digit OTP
+
 exit;
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function

@@ -29,6 +29,7 @@
             $email = $row['emp_email'];
             $mobile = $row['emp_mob'];
             $address = $row['emp_address'];
+            $role = $row['emp_role'];
             $position = $row['emp_position'];
             $doj = $row['emp_doj'];
             $salary = $row['emp_salary'];
@@ -123,6 +124,12 @@
                                         <th>Address</th>
                                         <td>
                                             <?php echo $address; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Role</th>
+                                        <td>
+                                            <?php echo $role; ?>
                                         </td>
                                     </tr>
                                     <tr>

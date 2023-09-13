@@ -52,6 +52,9 @@
 
             </ul> -->
           </li>
+          <?php 
+  if ($_SESSION["emp_role"]=='Admin'){
+  ?>
           <li class="nav-item">
             <a href="employee_list.php" class="nav-link">
               <i class="nav-icon fa-solid fa-user-tie"></i>
@@ -62,6 +65,7 @@
               </p>
             </a>
           </li>
+          <?php }?>
           <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fa-solid fa-calendar-days"></i>
@@ -203,7 +207,7 @@
 
           
           <li class="nav-item">
-            <a href="login1.php" class="nav-link">
+            <a href="logout.php" class="nav-link">
               <i class="nav-icon fa-solid fa-arrow-right-from-bracket"></i>
 
               <p>

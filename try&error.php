@@ -85,7 +85,7 @@
         </td>        
     </tr>        
     <tr>            
-        <th>P.F. @ 30%</th>            
+        <th>P.F. @ 12%</th>            
         <td>                
             <?php echo $pf;?>            
         </td>        
