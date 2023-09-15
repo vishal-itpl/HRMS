@@ -1,181 +1,141 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    body {
+        background-color: crimson;
+        color: white;
+    }
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HR Velocity | Leave List</title>
-  <?php include './css/style.php'; ?>
-</head>
+    th {
+        text-align: left;
+        padding: 5px;
+    }
 
-<body class="hold-transition sidebar-mini">
+    td {
+        padding-left: 10px;
+        font-size: 1.2em;
+    }
+</style>
 
-  <?php include 'nav-bar.php'; ?>
-  <?php include 'side-bar.php'; ?>
+<h1>Salary Calculation</h1>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <!-- <h1>DataTables</h1> -->
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Employee List</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <input type="number" name='actual' placeholder="actual Salary">
+    <input type="number" name='mDays' placeholder="Days in Month">
+    <!-- <input type="number" name='holidays' placeholder="Holidays"> -->
+    <input type="number" name='leaves' placeholder="Leaves Taken">
+    <button type="submit" name="submit">Calculate Salary</button>
+</form>
 
-    <!-- Main content -->
-    <section class="content">
-
-      <div class="card">
-        <div class="card-header">
-          <h2 class="card-title">Employee Leaves</h2>
-        </div>
-
-        <!-- /.card-header -->
-        <div class="card-body">
-          <?php
-          require_once 'connections.php';
-
-          // Query to fetch unique employee IDs
-          $employeeQuery = "SELECT DISTINCT emp_id FROM leave_application";
-          $employeeResult = mysqli_query($con, $employeeQuery);
-
-          if ($employeeResult) {
-            while ($employeeRow = mysqli_fetch_assoc($employeeResult)) {
-              $employee_ID = $employeeRow['emp_id'];
-
-              // Query to fetch leave data for the specific employee
-              $leaveQuery = "SELECT
-                leave_application.leave_type,
-                leave_application.from_date,
-                leave_application.to_date,
-                leave_application.description,
-                leave_application.app_date,
-                emp_info.emp_id,
-                emp_info.emp_name
-              FROM
-                leave_application
-                JOIN emp_info ON leave_application.emp_id = emp_info.emp_id
-              WHERE
-                leave_application.emp_id = '$employee_ID'";
-
-              $leaveResult = mysqli_query($con, $leaveQuery);
-
-              if ($leaveResult) {
-                $counter = 1;
-          ?>
-                <h3>Employee ID: <?php echo $employee_ID; ?></h3>
-                <table class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>Sr No.</th>
-                      <th>Employee Id.</th>
-                      <th>Employee Name</th>
-                      <th>Applied Date</th>
-                      <th>Leave Type</th>
-                      <th>Start Date</th>
-                      <th>End Date</th>
-                      <th>Description</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    while ($row = mysqli_fetch_assoc($leaveResult)) {
-                      $employee_name = $row['emp_name'];
-                      $applied_date = $row['app_date'];
-                      $leave_type = $row['leave_type'];
-                      $from_date = $row['from_date'];
-                      $to_date = $row['to_date'];
-                      $description = $row['description'];
-
-                      // Inside the loop, create a new table row for each record
-                      echo "<tr>";
-                      echo "<td>" . $counter++ . "</td>";
-                      echo "<td>" . $employee_ID . "</td>";
-                      echo "<td>" . $employee_name . "</td>";
-                      echo "<td>" . $applied_date . "</td>";
-                      echo "<td>" . $leave_type . "</td>";
-                      echo "<td>" . $from_date . "</td>";
-                      echo "<td>" . $to_date . "</td>";
-                      echo "<td>" . $description . "</td>";
-                      echo "<td>";
-                      echo "<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#modal-lg1'>View</button>";
-                      echo "<button type='button' class='btn btn-primary btn-sm mr-1'>Approve</button>";
-                      echo "<button type='button' class='btn btn-danger btn-sm mr-1'>Reject</button>";
-                      echo "</td>";
-                      echo "</tr>";
-                    }
-                    ?>
-                  </tbody>
-                </table>
-          <?php
-              } else {
-                echo "Error fetching leave data: " . mysqli_error($con);
-              }
-            }
-          }
-          ?>
-        </div>
-        <!-- /.card-body -->
-      </div>
-      <!-- /.card -->
-    </section>
-  </div>
-
-  <!-- ./wrapper -->
-  <!-- jQuery -->
-  <?php include './js/js.php'; ?>
-  <!-- Page specific script -->
-  <script>
-    $(function () {
-      $("#example1").DataTable();
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
-    });
-  </script>
-  <div class="modal fade" id="modal-lg">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Large Modal</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Name: Manish Kapoor&hellip;</p>
-          <p>One fine body&hellip;</p>
-          <p>One fine body&hellip;</p>
-          <p>One fine body&hellip;</p>
-          <p>One fine body&hellip;</p>
-          <p>One fine body&hellip;</p>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-</body>
-
-</html>
+<?php if (isset($_POST['actual'])) {
+    $td = $_POST['mDays'];
+    // $hd = $_POST['holidays'];
+    $wd = $td;
+    $lv = $_POST['leaves'];
+    $sal = $_POST['actual'];
+    $basic=$sal * 0.5;
+    $hra = $basic * 0.4;
+    $others = $basic * 0.6;
+    $pf = $basic * 0.12;
+    $pt = 200;
+    $esi = $basic * 1.5/100;
+    $allowances= $hra + $others;
+    $deductions = $pf + $pt + $esi;
+    $ts = $basic + $allowances - $deductions;
+    $lamt = round($ts / $wd * $lv);
+    $ns = $ts - $lamt;
+?>
+    <hr>
+    <table>
+        <tr>
+            <th>Days in Month</th>
+            <td>
+                <?php echo $td; ?>
+            </td>
+        </tr>
+        <!-- <tr>
+            <th>Holidays</th>
+            <td>
+                <?php ?>
+            </td>
+        </tr> -->
+        <tr>
+            <th>Working Days</th>
+            <td>
+                <?php echo $wd; ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Actual Salary</th>
+            <td>
+                <?php echo $sal; ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Basic Salary</th>
+            <td>
+                <?php echo $basic; ?>
+            </td>
+        </tr>
+        <tr>
+            <th>HRA @50% </th>
+            <td>
+                <?php echo $hra; ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Others @50% </th>
+            <td>
+                <?php echo $others; ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Provident Fund @12% </th>
+            <td>
+                <?php echo $pf; ?>
+            </td>
+        </tr>
+        <tr>
+            <th>ESI @1.5%</th>
+            <td>
+                <?php echo $esi; ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Professional Tax </th>
+            <td>
+                <?php echo $pt; ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Allowances </th>
+            <td>
+                <?php echo $allowances; ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Deductions </th>
+            <td>
+                <?php echo $deductions; ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Total Salary</th>
+            <td>
+                <?php echo $ts; ?>
+            </td>
+        </tr>
+        <tr>
+            <th>LWP Amount</th>
+            <td>
+                <?php echo $lamt . " for " . $lv . ' Days leave.'; ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Nett Salary</th>
+            <td>
+                <?php echo $ns; ?>
+            </td>
+        </tr>
+    </table>
+<?php
+}
+?>

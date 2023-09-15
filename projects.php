@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['is_login'])) {
+  header('Location:login1.php');
+  die();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

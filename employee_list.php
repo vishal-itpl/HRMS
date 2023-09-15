@@ -2,10 +2,10 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['is_login'])){
-  header('Location:leave_list.php');
- die();
- }
+if (!isset($_SESSION['is_login'])) {
+  header('Location:login1.php');
+  die();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,7 +99,7 @@ if(!isset($_SESSION['is_login'])){
                       <td>
                         <a href="employee_info.php?id=<?php echo $employee_ID; ?>" class="btn btn-primary btn-md">View</a>
                         <a href="edit.php?id=<?php echo $employee_ID; ?>" class="btn btn-primary btn-md">Edit</a>
-                        <a href="delete.php?deleteid=<?php echo $employee_ID; ?>" class="btn btn-danger btn-md">Delete</a>
+                        <a href="#" class="btn btn-danger btn-md" data-emp_id="<?php echo $employee_ID; ?>">Delete</a>
                       </td>
                     </tr>
                 <?php
@@ -122,12 +122,15 @@ if(!isset($_SESSION['is_login'])){
 
   <!-- jQuery -->
   <?php include 'js/js.php'; ?>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
   <script>
     $(function() {
       $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": ["pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,
         "lengthChange": false,
@@ -138,43 +141,73 @@ if(!isset($_SESSION['is_login'])){
         "responsive": true,
       });
 
-      // Add event listener only to the "Delete" buttons
-      $('.btn-danger').click(function() {
-        Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
-          <?php
-          include 'connections.php';
-          if (isset($_REQUEST['deleteid'])) {
-            $employee_ID = $_REQUEST['deleteid'];
+      $(document).ready(function() {
+        $('.btn-danger').click(function() {
+          var emp_id = $(this).data('emp_id');
+          console.log(emp_id);
+          Swal.fire({
+              title: 'Are you sure?',
+              text: "You won't be able to revert this!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+            })
+            .then((result) => {
+              if (result.isConfirmed) {
+                // Ajax request to delete the user.
+                $.ajax({
+                  url: 'delete.php',
+                  method: 'GET',
+                  data: {
+                    deleteid: emp_id
+                  },
+                  success: function() {
+                    swal({
 
-            $employee_ID = mysqli_real_escape_string($con, $employee_ID);
+                        title: 'Deleted',
+                        text: "The user has been deleted.",
+                        icon: 'success'
+                      }).then(function(){
+                        window.location.reload()
+                      });
+                  },
+                  error: function() {
+                    swal(
+                      'Error!',
+                      'Something went wrong.',
+                      'error'
+                    );
+                  }
 
-            $sql = "DELETE FROM emp_info WHERE emp_id = $employee_ID";
-
-            $result = mysqli_query($con, $sql);
-            if ($result) {
-              echo "";
-            } else {
-              die(mysqli_error($con));
-            }
-          }
-          ?>
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire(
-              'Deleted!',
-              'Your record has been deleted.',
-              'success'
-            )
-          }
+                });
+              }
+            });
         });
       });
+      // Add event listener only to the "Delete" buttons
+      // $('.btn-danger').click(function() 
+      // {
+      // Swal.fire({
+      //   title: 'Are you sure?',
+      //   text: "You won't be able to revert this!",
+      //   icon: 'warning',
+      //   showCancelButton: true,
+      //   confirmButtonColor: '#3085d6',
+      //   cancelButtonColor: '#d33',
+      //   confirmButtonText: 'Yes, delete it!'
+
+      //   }).then((result) => {
+      //     if (result.isConfirmed) {
+      //       Swal.fire(
+      //         'Deleted!',
+      //         'Your record has been deleted.',
+      //         'success'
+      //       )
+      //     }
+      //   });
+      // });
     });
   </script>
 </body>

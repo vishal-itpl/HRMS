@@ -83,11 +83,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $query = "SELECT emp_role, emp_email from emp_info WHERE emp_email='$emp_email' AND password='$password'";
     $result = mysqli_query($conn, $query);
 
-
     if ($result && mysqli_num_rows($result) > 0) {
         $user = mysqli_fetch_assoc($result);
         $_SESSION["emp_email"] = $user["emp_email"];
         $_SESSION["emp_role"] = $user["emp_role"];
+        $_SESSION['is_login'] = "Yes";
+
            // Store user's role in session
         // Redirect to the dashboard
         header("Location: home.php");
