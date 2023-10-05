@@ -1,10 +1,21 @@
 <?php
 session_start();
-
+include_once "connections.php";
 if (!isset($_SESSION['is_login'])) {
-  header('Location:login1.php');
-  die();
+    header('Location:login1.php');
+    die();
+    
 }
+$sql= "SELECT emp_id FROM `emp_info` WHERE `emp_email` = '".$_SESSION['emp_email']."' ";
+$result = mysqli_query($con, $sql);
+if(mysqli_num_rows($result)>0)
+{
+    while($i=mysqli_fetch_assoc($result))
+    {
+        $eid = $i['emp_id'];
+    }
+}
+$_SESSION['eid']=$eid;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,36 +69,36 @@ if (!isset($_SESSION['is_login'])) {
                             <!-- form start -->
                             <form id="quickForm" method="POST" action="leave_list.php">
                                 <div class="card-body">
-                                    <div class="form-group">
-                                        <label>Select Employee</label>
-                                        <select name="employee_id" class="form-control">
-                                        <?php
+                                    <!-- <div class="form-group"> -->
+                                        <!-- <label>Select Employee</label>
+                                        <select name="employee_id" class="form-control"> -->
+                                            <?php
                                             // Connect to your database (make sure to include your database connection code here)
-                                            require_once 'connections.php';
+                                            // require_once 'connections.php';
 
-                                            // Query to fetch employee information
-                                            $sql = "SELECT emp_id, emp_name FROM emp_info";
+                                            // // Query to fetch employee information
+                                            // $sql = "SELECT emp_id, emp_name FROM emp_info";
 
-                                            // Execute the query
-                                            $result = mysqli_query($con, $sql);
+                                            // // Execute the query
+                                            // $result = mysqli_query($con, $sql);
 
-                                            // Check if the query was successful
-                                            if ($result) {
-                                                // Loop through the results and create dropdown options
-                                                while ($row = mysqli_fetch_assoc($result)) {
-                                                    $empId = $row['emp_id'];
-                                                    $empName = $row['emp_name'];
-                                                    echo "<option value='$empId'>$empName</option>";
-                                                }
-                                            } else {
-                                                echo "<option value=''>No employees found</option>";
-                                            }
+                                            // // Check if the query was successful
+                                            // if ($result) {
+                                            //     // Loop through the results and create dropdown options
+                                            //     while ($row = mysqli_fetch_assoc($result)) {
+                                            //         $empId = $row['emp_id'];
+                                            //         $empName = $row['emp_name'];
+                                            //         echo "<option value='$empId'>$empName</option>";
+                                            //     }
+                                            // } else {
+                                            //     echo "<option value=''>No employees found</option>";
+                                            // }
 
                                             // Close the database connection
-                                            mysqli_close($con);
+                                            // mysqli_close($con);
                                             ?>
-                                        </select>
-                                    </div>
+                                        <!-- </select> -->
+                                    <!-- </div> -->
                                     <div class="form-group">
                                         <label>Type of Leave</label>
                                         <select name="leave" class="form-control">
@@ -111,15 +122,18 @@ if (!isset($_SESSION['is_login'])) {
                                             </div>
                                             <!-- <input type="text" class="form-control float-right" id="reservation"
                                                 name="reservation"> -->
-                                            <input type="text" class="form-control float-right" id="reservation" name="reservation">
+                                            <input type="text" class="form-control float-right" id="reservation"
+                                                name="reservation">
 
                                         </div>
                                         <!-- /.input group -->
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Description</label>&nbsp;<i class="fa-solid fa-asterisk fa-2xs" style="color: #ff0000;"></i>
-                                        <textarea name="desc" class="form-control" rows="2" placeholder="Enter Description here..." minlength="25" required></textarea>
+                                        <label>Description</label>&nbsp;<i class="fa-solid fa-asterisk fa-2xs"
+                                            style="color: #ff0000;"></i>
+                                        <textarea name="desc" class="form-control" rows="2"
+                                            placeholder="Enter Description here..." minlength="25" required></textarea>
                                     </div>
                                 </div>
 
@@ -137,33 +151,34 @@ if (!isset($_SESSION['is_login'])) {
                         </form>
                     </div>
                     <?php
-                        include 'connections.php';
-                        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-                            header("Location:leave_list.php");
-                            // Capture the selected employee's emp_id from the form
-                            $empId = $_POST["employee_id"];
+                    include 'connections.php';
+                    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                        header("Location:leave_list.php");
+                        // Capture the selected employee's emp_id from the form
+                        // $empId = $_POST["employee_id"];
+                        $empId = $eid;
 
-                            $selectedDates = explode(" - ", $_POST["reservation"]);
-                            $fromDate = date("Y-m-d", strtotime($selectedDates[0]));
-                            $toDate = date("Y-m-d", strtotime($selectedDates[1]));
+                        $selectedDates = explode(" - ", $_POST["reservation"]);
+                        $fromDate = date("Y-m-d", strtotime($selectedDates[0]));
+                        $toDate = date("Y-m-d", strtotime($selectedDates[1]));
 
-                            $leaveType = $_POST["leave"];
-                            $description = mysqli_real_escape_string($con, $_POST["desc"]);
+                        $leaveType = $_POST["leave"];
+                        $description = mysqli_real_escape_string($con, $_POST["desc"]);
 
-                            // Insert data into the leave_application table with the selected employee's emp_id
-                            $query = "INSERT INTO leave_application (emp_id, leave_type, from_date, to_date, description, app_date) 
+                        // Insert data into the leave_application table with the selected employee's emp_id
+                        $query = "INSERT INTO leave_application (emp_id, leave_type, from_date, to_date, description, app_date) 
                                       VALUES ('$empId', '$leaveType', '$fromDate', '$toDate', '$description', NOW())";
 
-                            if (mysqli_query($con, $query)) {
-                                echo "Form data inserted successfully!";
-                            } else {
-                                echo "Error inserting form data: " . mysqli_error($con);
-                            }
-
-                            // Close the database connection
-                            mysqli_close($con);
+                        if (mysqli_query($con, $query)) {
+                            echo "Form data inserted successfully!";
+                        } else {
+                            echo "Error inserting form data: " . mysqli_error($con);
                         }
-                        ?>
+
+                        // Close the database connection
+                        mysqli_close($con);
+                    }
+                    ?>
                 </div>
                 <div class="col-md-6">
                 </div>
@@ -174,7 +189,7 @@ if (!isset($_SESSION['is_login'])) {
     <?php include './js/js.php'; ?>
 </body>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Initialize the date range picker
         $('#reservation').daterangepicker({
             locale: {
@@ -183,7 +198,7 @@ if (!isset($_SESSION['is_login'])) {
         });
 
         // Bind a function to the form's submit event
-        $('#quickForm').on('submit', function(e) {
+        $('#quickForm').on('submit', function (e) {
             e.preventDefault(); // Prevent the form from submitting normally
 
             // Perform form validation
@@ -203,7 +218,7 @@ if (!isset($_SESSION['is_login'])) {
                     type: 'POST',
                     url: 'leave_application.php',
                     data: $('#quickForm').serialize(),
-                    success: function(response) {
+                    success: function (response) {
                         console.log('Form submission successful:', response);
 
                         // Display success message using SweetAlert
@@ -225,7 +240,7 @@ if (!isset($_SESSION['is_login'])) {
                             }
                         });
                     },
-                    error: function(error) {
+                    error: function (error) {
                         console.error('Form submission error:', error);
 
                         //  error message using SweetAlert

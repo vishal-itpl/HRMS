@@ -36,7 +36,7 @@
     $others = $basic * 0.6;
     $pf = $basic * 0.12;
     $pt = 200;
-    $esi = $basic * 1.5/100;
+    $esi = $sal * 0.015;
     $allowances= $hra + $others;
     $deductions = $pf + $pt + $esi;
     $ts = $basic + $allowances - $deductions;

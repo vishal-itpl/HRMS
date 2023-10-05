@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = md5($_POST["password"]);
 
     // Validate credentials against the database
-    $query = "SELECT emp_role, emp_email from emp_info WHERE emp_email='$emp_email' AND password='$password'";
+    $query = "SELECT emp_role, emp_email, emp_id from emp_info WHERE emp_email='$emp_email' AND password='$password'";
     $result = mysqli_query($conn, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
@@ -88,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION["emp_email"] = $user["emp_email"];
         $_SESSION["emp_role"] = $user["emp_role"];
         $_SESSION['is_login'] = "Yes";
+        $_SESSION['eid'] = $user["emp_id"];
 
            // Store user's role in session
         // Redirect to the dashboard

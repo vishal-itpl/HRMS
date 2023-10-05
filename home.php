@@ -1,4 +1,8 @@
 <?php session_start();
+// echo "<pre>";
+// print_r($_SESSION);
+// echo "</pre>";
+
 $error = '';
  if (isset($_POST['emp_email']) && isset($_POST['password'])){
  $emp_email = $_POST['emp_email'];

@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+$eid = $_SESSION['eid'];
+$erole = $_SESSION['emp_role'];
 if (!isset($_SESSION['is_login'])) {
   header('Location:login1.php');
   die();
@@ -71,8 +72,8 @@ if (!isset($_SESSION['is_login'])) {
             <tbody>
             <?php
 require_once 'connections.php';
-
-$sql = "SELECT
+if($erole=='Admin')
+{$sql = "SELECT
   leave_application.leave_type,
   leave_application.from_date,
   leave_application.to_date,
@@ -84,7 +85,24 @@ FROM
   leave_application
 JOIN
   emp_info ON leave_application.emp_id = emp_info.emp_id";
-
+}
+else
+{
+  $sql = "SELECT
+  leave_application.leave_type,
+  leave_application.from_date,
+  leave_application.to_date,
+  leave_application.description,
+  leave_application.app_date,
+  emp_info.emp_id,
+  emp_info.emp_name
+FROM
+  leave_application
+JOIN
+  emp_info ON leave_application.emp_id = emp_info.emp_id
+WHERE
+  emp_info.emp_id= $eid";
+}
 $result = mysqli_query($con, $sql);
 
 if ($result) {
