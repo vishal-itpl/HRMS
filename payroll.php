@@ -1,9 +1,9 @@
 <?php
 session_start();
-
+$eid = $_SESSION['eid'];
 if (!isset($_SESSION['is_login'])) {
-  header('Location:login1.php');
-  die();
+    header('Location:login1.php');
+    die();
 }
 ?>
 <!DOCTYPE html>
@@ -47,30 +47,32 @@ if (!isset($_SESSION['is_login'])) {
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
-                            
+
                             <tr>
                                 <th>Sr No.</th>
                                 <th>Employee Name</th>
                                 <th>Amount</th>
                                 <th>Present Days</th>
+                                <th>Working Days</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
+                            <?php
                             require_once 'connections.php';
-                            $sql = "SELECT
-            --   leave_application.leave_type,
-            --   leave_application.from_date,
-            --   leave_application.to_date,
-            --   leave_application.description,
-            --   leave_application.app_date,
-              emp_info.emp_id,
-              emp_info.emp_name,
-              emp_info.emp_salary
-          FROM
-            --   leave_application,
-              emp_info;";
+                            $count = 0;
+                            $date = date_create();
+                            for ($i = date("t"); $i > 0; $i--) {
+                                date_date_set($date, date("Y"), date("m"), $i);
+                                if (date_format($date, "w") != 0 && date_format($date, "w") != 6) {
+                                    $count++;
+                                }
+                            }
+                            // echo 'Total working days : ' . $count;
+                            // $pdays= $count - $leave;
+                            $sql = "SELECT payroll.actual_salary, payroll.basic_sal, payroll.total_days, payroll.working_days, payroll.hra, payroll.others, payroll.esi, payroll.provident_fund, payroll.ptax, payroll.leave_days, payroll.leave_amount, payroll.net_salary, emp_info.emp_id, emp_info.emp_name FROM payroll JOIN emp_info ON payroll.emp_id = emp_info.emp_id
+                            WHERE
+                              emp_info.emp_id= $eid";
                             $result = mysqli_query($con, $sql);
                             if ($result) {
                                 $counter = 1;
@@ -83,16 +85,17 @@ if (!isset($_SESSION['is_login'])) {
                                     echo "<td>" . $employee_name . "</td>";
                                     echo "<td>" . $employee_salary . "</td>";
                                     echo "<td>17</td>";
+                                    echo "<td>" . $count . "</td>";
                                     echo "<td>";
-                                    echo "<button type='button' class='btn btn-primary btn-md mr-2'>View Details<i class='fa-solid'></i></button>";
-                                    echo "<button type='button' class='btn btn-primary btn-md mr-2'>Payslip <i class='fa-solid'></i></button>";
+                                    echo "<a href='try.php'> <button type='button' class='btn btn-primary btn-md mr-2'>View Details<i class='fa-solid'></i></button></a>";
+                                    // echo "<button type='button' class='btn btn-primary btn-md mr-2'>Payslip <i class='fa-solid'></i></button>";
                                     echo "<button type='button' class='btn btn-primary btn-md'>Pay <i class='fa-solid'></i></button>";
                                     echo "</td>";
                                     echo "</tr>";
                                 }
                             }
-                                
-                        
+
+
 
                             ?>
 

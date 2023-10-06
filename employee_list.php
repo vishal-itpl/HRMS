@@ -107,8 +107,6 @@ if (!isset($_SESSION['is_login'])) {
                 }
                 ?>
               </tbody>
-
-
             </table>
           </div>
         </div>
@@ -119,7 +117,6 @@ if (!isset($_SESSION['is_login'])) {
   </div>
   </div>
   </div>
-
   <!-- jQuery -->
   <?php include 'js/js.php'; ?>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>

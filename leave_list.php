@@ -127,7 +127,7 @@ if ($result) {
     echo "<td>" . $to_date . "</td>";
     echo "<td>" . $description . "</td>";
     echo "<td>";
-    echo "<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#modal-lg1'>View</button>";
+    echo "<button type='button' class='btn btn-primary btn-sm mr-1' data-toggle='modal' data-target='#modal-lg1'>View</button>";
     echo "<button type='button' class='btn btn-primary btn-sm mr-1'>Approve</button>";
     echo "<button type='button' class='btn btn-danger btn-sm mr-1'>Reject</button>";
     echo "</td>";
