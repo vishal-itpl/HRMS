@@ -1,57 +1,199 @@
-<div class="calculator">
-<div class="section">
-<h2 class="sectionTitle">Payroll Calculator</h2>
-<div class="sectionText"><label class="keyLabel">Select Option</label>
-<div class="valDiv">
-<div class=" no-padding"><select id="financial_year" class="form-control valFieldHalf" style="margin-top: -4px;">
-<option value="option1">Old Regime</option>
-<option value="option2">New Regime</option>
-</select></div>
-</div>
-</div>
-<div class="sectionText"><label class="keyLabel">Salary</label>
-<div class="valDiv">
-<div class="col-md-6 no-padding"><select id="period" class="form-control valFieldHalf" style="margin-top: -4px;">
-<option value="month">Month</option>
-<option value="year">Year</option>
-</select></div>
-<div class="col-md-6 no-padding"><input id="compensation" class="valField textRight salary" type="text"></div>
-</div>
-</div>
-<div class="sectionText"><label class="keyLabel">Basic Pay</label>
-<div class="valDiv text-right"><input id="basic" class="textRight valField basic" type="text"></div>
-</div>
-<div class="sectionText"><label class="keyLabel">IT Declarations/Year</label>
-<div class="valDiv text-right"><input id="savings" class="valField textRight savings" type="text"></div>
-</div>
-</div>
-<div class="section">
-<h4 class="sectionTitle">Allowances</h4>
-<div class="sectionText"><label class="keyLabel">HRA</label>
-<div class="valDiv text-right"><span id="hra" class=" credit_field">₹40.00</span></div>
-</div>
-<div class="sectionText"><label class="keyLabel">Other</label>
-<div class="valDiv text-right"><span id="otherAllowances" class=" credit_field">₹60.00</span></div>
-</div>
-</div>
-<div class="section">
-<h4 class="sectionTitle">Deductions</h4>
-<div class="sectionText"><label class="keyLabel">TDS</label>
-<div class="valDiv text-right"><span id="tds" class=" credit_field">₹0.00</span></div>
-</div>
-<div class="sectionText"><label class="keyLabel">PF</label>
-<div class="valDiv text-right"><span id="pf" class=" credit_field">₹12.00</span></div>
-</div>
-<div class="sectionText"><label class="keyLabel">ESI</label>
-<div class="valDiv text-right"><span id="esi" class=" credit_field">₹1.50</span></div>
-</div>
-<div class="sectionText"><label class="keyLabel">Profession Tax</label>
-<div class="valDiv text-right"><span id="profTax" class=" credit_field">₹0.00</span></div>
-</div>
-</div>
-<div class="section">
-<div class="sectionText sectionTitle"><label class="keyLabel">Net Amount</label>
-<div class="valDiv text-right"><span id="net" class=" credit_field">₹186.50</span></div>
-</div>
-</div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Velocity | Employee Information</title>
+
+
+    <?php include './css/style.php'; ?>
+</head>
+
+<body>
+    <?php
+    include 'connections.php';
+    $row = [];
+    if (isset($_GET['id'])) {
+        $emp_id = $_GET['id'];
+
+        $sql = "SELECT * FROM emp_info WHERE emp_id = $emp_id";
+
+        $result = mysqli_query($con, $sql);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $dob = $row['emp_dob'];
+            $name = $row['emp_name'];
+            $gender = $row['emp_gender'];
+            $email = $row['emp_email'];
+            $mobile = $row['emp_mob'];
+            $address = $row['emp_address'];
+            $role = $row['emp_role'];
+            $position = $row['emp_position'];
+            $doj = $row['emp_doj'];
+            $salary = $row['emp_salary'];
+            $emg_name = $row['emg_name'];
+            $emg_rltn = $row['emg_rltn'];
+            $emg_contact = $row['emg_contact'];
+            $bank_name = $row['bank_name'];
+            $bank_acc = $row['bank_accno'];
+            $acc_type = $row['bank_acctype'];
+        } else {
+            echo "Error: " . mysqli_error($con);
+        }
+
+        mysqli_close($con);
+    } else {
+        echo "Employee ID not provided.";
+    }
+    ?>
+
+
+
+    <div class="wrapper">
+        <?php include 'nav-bar.php'; ?>
+        <?php include 'side-bar.php'; ?>
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Employee Details</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Employee Information</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <section class="content">
+                <div class="col-12">
+                    <div>
+                        <a class="btn btn-primary float-right" href="employee_list.php" role="button"><i class="fa-solid fa-backward"></i></a>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h3 class="card-title">Employee Information</h3>
+                        </div>
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <tbody>
+                                    <?php
+                                    // echo "<pre>";
+                                    // print_r($row);
+                                    // echo "</pre>";
+                                    ?>
+                                    <tr>
+                                        <th style="width: 100px;">Name</th>
+                                        <td>
+                                            <?php echo $name; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Date of Birth</th>
+                                        <td>
+                                            <?php echo $dob; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Gender</th>
+                                        <td>
+                                            <?php echo $gender; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email Address</th>
+                                        <td>
+                                            <?php echo $email; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mobile No.</th>
+                                        <td>
+                                            <?php echo $mobile; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Address</th>
+                                        <td>
+                                            <?php echo $address; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Role</th>
+                                        <td>
+                                            <?php echo $role; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Position</th>
+                                        <td>
+                                            <?php echo $position; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Date Of Joining</th>
+                                        <td>
+                                            <?php echo $doj; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Salary</th>
+                                        <td>
+                                            <?php echo $salary; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Emergency Contact Name</th>
+                                        <td>
+                                            <?php echo $emg_name; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Emergency Contact Relation</th>
+                                        <td>
+                                            <?php echo $emg_rltn; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Emergency Contact Contact No.</th>
+                                        <td>
+                                            <?php echo $emg_contact; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Bank Name</th>
+                                        <td>
+                                            <?php echo $bank_name; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Account Number</th>
+                                        <td>
+                                            <?php echo $bank_acc; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Account Type</th>
+                                        <td>
+                                            <?php echo $acc_type; ?>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</body>
+<?php include './js/js.php'; ?>

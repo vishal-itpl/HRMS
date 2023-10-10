@@ -1,3 +1,12 @@
+<?php
+session_start();
+$eid = $_SESSION['eid'];
+$erole = $_SESSION['emp_role'];
+if (!isset($_SESSION['is_login'])) {
+    header('Location:login1.php');
+    die();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +22,7 @@
     include 'connections.php';
     $row = [];
     if (isset($_GET['id'])) {
-        $emp_id = $_GET['id'];
+        $eid = $_GET['id'];
 
         $sql = "SELECT
         payroll.actual_salary,
@@ -81,7 +90,7 @@
             <section class="content">
                 <div class="col-12">
                     <div>
-                        <a class="btn btn-primary float-right" href="employee_list.php" role="button"><i class="fa-solid fa-backward"></i></a>
+                        <a class="btn btn-primary float-right" href="payroll.php" role="button"><i class="fa-solid fa-backward"></i></a>
                     </div>
                     <br>
                     <br>
@@ -93,9 +102,9 @@
                             <table class="table table-hover text-nowrap">
                                 <tbody>
                                     <?php
-                                    echo "<pre>";
-                                    print_r($row);
-                                    echo "</pre>";
+                                    // echo "<pre>";
+                                    // print_r($row);
+                                    // echo "</pre>";
                                     ?>
                                     <tr>
                                         <th style="width: 100px;">Actual Salary</th>
