@@ -2,6 +2,7 @@
 session_start();
 $eid = $_SESSION['eid'];
 $erole = $_SESSION['emp_role'];
+// echo $erole;
 if (!isset($_SESSION['is_login'])) {
     header('Location:login1.php');
     die();
@@ -70,64 +71,70 @@ if (!isset($_SESSION['is_login'])) {
                                         $count++;
                                     }
                                 }
+                                // echo"$eid";
+                                // exit;
                                 // echo 'Total working days : ' . $count;
                                 // $pdays= $count - $leave;
-                                $sql = "SELECT payroll.actual_salary, payroll.basic_sal, payroll.total_days, payroll.working_days, payroll.hra, payroll.others, payroll.esi, payroll.provident_fund, payroll.ptax, payroll.leave_days, payroll.leave_amount, payroll.net_salary, emp_info.emp_id,emp_info.emp_salary, emp_info.emp_name FROM payroll JOIN emp_info ON payroll.emp_id = emp_info.emp_id
-                            WHERE
-                              emp_info.emp_id= $eid";
-
-                                $result = mysqli_query($con, $sql);
-                                if ($result) {
-                                    $counter = 1;
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        $employee_name = $row['emp_name'];
-                                        $employee_salary = $row['emp_salary'];
-                                        // Inside the loop, create a new table row for each record
-                                        echo "<tr>";
-                                        echo "<td>" . $counter++ . "</td>";
-                                        echo "<td>" . $employee_name . "</td>";
-                                        echo "<td>" . $employee_salary . "</td>";
-                                        echo "<td>17</td>";
-                                        echo "<td>" . $count . "</td>";
-                                ?>
-                                        <?php
-                                        if ($erole == 'Admin') {
-                                        }
-                                        ?>
-                                        <?php
-                                        echo "<td>";
-                                        echo "<a href='view.php'> <button type='button' class='btn btn-primary btn-md mr-2'>View Details<i class='fa-solid'></i></button></a>";
-                                        echo "</td>";
-                                        ?>
-
-                                <?php
-                                        // Inside your PHP loop where you generate the table rows
-                                        // Replace these values with your actual data
-                                        $td = 20; // Example: Number of total days
-                                        // $wd = $count;
-                                        $lv = 5;  // Example: Number of leaves
-                                        $sal = $employee_salary; // Example: Salary
-
-                                        // Calculate the necessary values
-                                        $basic = $sal * 0.5;
-                                        $hra = $basic * 0.4;
-                                        $others = $basic * 0.6;
-                                        $pf = $basic * 0.12;
-                                        $pt = 200;
-                                        $esi = $sal * 0.015;
-                                        $allowances = $hra + $others;
-                                        $deductions = $pf + $pt + $esi;
-                                        $ts = $basic + $allowances - $deductions;
-                                        $lamt = round($ts / $td * $lv);
-                                        $ns = $ts - $lamt;
-
-                                        // Add data attributes to the "Pay" button
-                                        echo "<td>";
-                                        echo "<button type='button' class='btn btn-primary btn-md pay-btn' 
-      data-amount='$ns' data-description='Payment for Employee ID: $eid'>Pay <i class='fa-solid'></i></button>";
-                                        echo "</td>";
+                                 
+                                if ($erole == "Admin"){
+                                    $sql = "SELECT payroll.actual_salary, payroll.basic_sal, payroll.total_days, payroll.working_days, payroll.hra, payroll.others, payroll.esi, payroll.provident_fund, payroll.ptax, payroll.leave_days, payroll.leave_amount, payroll.net_salary, emp_info.emp_id,emp_info.emp_salary, emp_info.emp_name FROM payroll JOIN emp_info ON payroll.emp_id = emp_info.emp_id 
+                              ";
+                              $result = mysqli_query($con, $sql);
+                              if ($result) {
+                                $counter = 1;
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    $employee_name = $row['emp_name'];
+                                    $employee_salary = $row['emp_salary'];
+                                    // Inside the loop, create a new table row for each record
+                                    echo "<tr>";
+                                    echo "<td>" . $counter++ . "</td>";
+                                    echo "<td>" . $employee_name . "</td>";
+                                    echo "<td>" . $employee_salary . "</td>";
+                                    echo "<td>17</td>";
+                                    echo "<td>" . $count . "</td>";
+                                
+                                    ?>
+                                    <?php
+                                    if ($erole == 'Admin') {
                                     }
+                                    ?>
+                                    <?php
+                                    echo "<td>";
+                                    echo "<a href='view.php'> <button type='button' class='btn btn-primary btn-md mr-2'>View Details<i class='fa-solid'></i></button></a>";
+                                    echo "</td>";
+                                    ?>
+
+                            <?php
+                                    // Inside your PHP loop where you generate the table rows
+                                    // Replace these values with your actual data
+                                    $td = 20; // Example: Number of total days
+                                    // $wd = $count;
+                                    $lv = 5;  // Example: Number of leaves
+                                    $sal = $employee_salary; // Example: Salary
+
+                                    // Calculate the necessary values
+                                    $basic = $sal * 0.5;
+                                    $hra = $basic * 0.4;
+                                    $others = $basic * 0.6;
+                                    $pf = $basic * 0.12;
+                                    $pt = 200;
+                                    $esi = $sal * 0.015;
+                                    $allowances = $hra + $others;
+                                    $deductions = $pf + $pt + $esi;
+                                    $ts = $basic + $allowances - $deductions;
+                                    $lamt = round($ts / $td * $lv);
+                                    $ns = $ts - $lamt;
+
+                                    // Add data attributes to the "Pay" button
+                                    echo "<td>";
+                                    echo "<button type='button' class='btn btn-primary btn-md pay-btn' 
+  data-amount='$ns' data-description='Payment for Employee ID: $eid'>Pay <i class='fa-solid'></i></button>";
+                                    echo "</td>";
                                 }
+                            }
+                                }
+                                
+                                
                                 ?>
                             </tbody>
                         </table>
@@ -157,55 +164,84 @@ if (!isset($_SESSION['is_login'])) {
             });
         });
     </script>
-    <script>
-        // Add this script at the end of your HTML body
-        document.addEventListener("DOMContentLoaded", function() {
-            const payButtons = document.querySelectorAll('.pay-btn');
+<script>
+    // Add this script at the end of your HTML body
+    document.addEventListener("DOMContentLoaded", function() {
+        const payButtons = document.querySelectorAll('.pay-btn');
 
-            payButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Calculate the amount (you can replace this with your calculation logic)
-                    $td = 20; // Example: Number of total days
-                                        // $wd = $count;
-                                        $lv = 5;  // Example: Number of leaves
-                                        // $sal = $employee_salary; // Example: Salary
+        payButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                function countWorkingDays() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth();
 
-                                        // // Calculate the necessary values
-                                        // $basic = $sal * 0.5;
-                                        // $hra = $basic * 0.4;
-                                        // $others = $basic * 0.6;
-                                        // $pf = $basic * 0.12;
-                                        // $pt = 200;
-                                        // $esi = $sal * 0.015;
-                                        // $allowances = $hra + $others;
-                                        // $deductions = $pf + $pt + $esi;
-                                        // $ts = $basic + $allowances - $deductions;
-                                        // $lamt = round($ts / $td * $lv);
-                                        $ns = 1000;
-                    const amount = $ns; // Example: Replace with your calculation logic
+    let count = 0;
 
-                    // Show the amount in an alert
-                    alert("Amount to be paid: Rs" + amount);
+    for (let i = 1; i <= new Date(year, month + 1, 0).getDate(); i++) {
+        const date = new Date(year, month, i);
+        const dayOfWeek = date.getDay(); // 0 = Sunday, 6 = Saturday
 
-                    // Display a SweetAlert to confirm payment
-                    Swal.fire({
-                        title: 'Confirm Payment',
-                        text: 'Are you sure you want to make the payment?',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, pay now!'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Payment is confirmed, show success message
-                            Swal.fire('Payment Successful!', 'Your payment has been processed.', 'success');
-                        }
-                    });
+        if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+            count++;
+        }
+    }
+
+    return count;
+}
+function getDaysInMonth(year, month) {
+    // JavaScript months are 0-based, so January is 0, February is 1, etc.
+    // To get the last day of the previous month, use day 0.
+    return new Date(year, month + 1, 0).getDate();
+}
+
+// // Example usage:
+const year = 2023;
+const month = 9; // 0-based, so 9 represents October
+const daysInMonth = getDaysInMonth(year, month);
+// console.log(`Number of days in the month: ${daysInMonth}`);
+
+
+// Example usage:
+const workingDaysCount = countWorkingDays();
+                let td = daysInMonth; 
+                let wd = workingDaysCount;
+                // console.log(workingDaysCount);
+                let lv = 5;
+                let sal = 1000; //Salary
+                let basic = sal * 0.5;
+                let hra = basic * 0.5;// House rent allowance
+                let others = basic * 0.5;// Others
+                let pf = basic * 0.12;//Provident Fund
+                let pt = 200;//Professional Tax
+                let esi = sal * 0.015;// ESI
+                let allowances = hra + others;
+                let deductions = pf + pt + esi;
+                let ts = basic + allowances - deductions;//Total Salary
+                let lamt = Math.round(ts / td * lv);//Leave amount per day/leave
+                let ns = 1000; //Net salary(In hand salary)
+                const amount = ns;
+                alert("Amount to be paid: Rs" + amount);
+                // Displaying a SweetAlert to confirm payment
+                Swal.fire({
+                    title: 'Confirm Payment',
+                    text: 'Are you sure you want to make the payment?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, pay now!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Payment is confirmed, show success message
+                        Swal.fire('Payment Successful!', 'Your payment has been processed.', 'success');
+                    }
                 });
             });
         });
-    </script>
+    });
+</script>
+
     </div>
 </body>
 </html>

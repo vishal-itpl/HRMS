@@ -1,7 +1,12 @@
 <?php
 session_start();
+$eid = $_SESSION['eid'];
+$erole = $_SESSION['emp_role'];
+if (!isset($_SESSION['is_login'])) {
+    header('Location:login1.php');
+    die();
+}
 
-if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 
   ?>
   <!DOCTYPE html>
@@ -16,7 +21,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         background: #F2DEDE;
         color: #A94442;
         padding: 10px;
-        width: 95%;
+        width: 100%;
+		text-align: center;
         border-radius: 5px;
         margin: 20px auto;
       }
@@ -25,7 +31,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         background: #D4EDDA;
         color: #40754C;
         padding: 10px;
-        width: 95%;
+        width: 100%;
         border-radius: 5px;
         margin: 20px auto;
       }
@@ -158,8 +164,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
   </html>
 
   <?php
-} else {
-  header("Location: index.php");
-  exit();
-}
+// } else {
+//   header("Location: index.php");
+//   exit();
+// }
 ?>

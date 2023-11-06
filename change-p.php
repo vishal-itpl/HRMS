@@ -1,7 +1,11 @@
 <?php
 session_start();
-
-if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
+$eid = $_SESSION['eid'];
+$erole = $_SESSION['emp_role'];
+if (!isset($_SESSION['is_login'])) {
+    header('Location:login1.php');
+    die();
+} {
 
 	include "connections.php";
 
@@ -38,12 +42,12 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 			$id = $_SESSION['id'];
 
 			$sql = "SELECT password
-                FROM users WHERE 
+                FROM emp_info WHERE 
                 id='$id' AND password='$op'";
 			$result = mysqli_query($con, $sql);
 			if (mysqli_num_rows($result) === 1) {
 
-				$sql_2 = "UPDATE users
+				$sql_2 = "UPDATE emp_info
         	          SET password='$np'
         	          WHERE id='$id'";
 				mysqli_query($con, $sql_2);
@@ -62,8 +66,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 		header("Location: changepw.php");
 		exit();
 	}
-
-} else {
-	header("Location: index.php");
-	exit();
-}
+	} 
+	// else {
+// 	header("Location: index.php");
+// 	exit();
+// }

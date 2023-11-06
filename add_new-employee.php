@@ -67,13 +67,13 @@ if (!isset($_SESSION['is_login'])) {
                       <!-- <label for="Name">Employee Id</label> -->
                       <!-- <input type="text" name="empid" class="form-control" placeholder="Enter Employee Id" value="1050"> -->
                     <!-- </div> -->
-                    <div class="form-group">
+                    <div class="form-group col-12">
                       <label for="exampleInputEmail1">Date Of Birth</label>
                       <input type="date" name="dob" class="form-control" id="exampleInputEmail1"
                         placeholder="Enter DOB">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group col-12">
                       <label for="exampleInputEmail1">Gender</label> <br>
                       <div class="row">
                         <div class="custom-control custom-radio col-md-1">
@@ -128,12 +128,12 @@ if (!isset($_SESSION['is_login'])) {
                         <option>Sr. Developer</option>
                       </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-12">
                       <label for="exampleInputJoining1">Date Of Joining</label>
                       <input type="date" name="doj" class="form-control" id="exampleInputjoining1">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group col-12">
                       <label for="exampleInputPassword1">Salary</label>
                       <input type="text" name="salary" class="form-control" id="exampleInputsalary1"
                         placeholder="Salary" value="">
