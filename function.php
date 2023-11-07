@@ -25,3 +25,26 @@ const { workingDays, totalDays } = getWorkingDaysAndTotalDays(year, month);
 
 console.log(`Number of working days in the month: ${workingDays}`);
 console.log(`Total number of days in the month: ${totalDays}`);
+
+
+
+
+
+
+<?php
+$curmnth = date('m');
+$curyear = date('Y');
+function get_days_in_month($month, $year)
+{
+    if ($month == "02")
+    {
+        if ($year % 4 == 0) return 29;
+        else return 28;
+    }
+    else if ($month == "01" || $month == "03" || $month == "05" || $month == "07" || $month == "08" || $month == "10" || $month == "12") return 31;
+    else return 30;
+}
+$totDays = get_days_in_month($curmnth, $curyear);
+printf("Total no of days in a current month : " . $totDays);
+print "</br>";
+?>

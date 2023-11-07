@@ -2,6 +2,7 @@
 session_start();
 $eid = $_SESSION['eid'];
 $erole = $_SESSION['emp_role'];
+$id = $_GET['id'];
 if (!isset($_SESSION['is_login'])) {
     header('Location:login1.php');
     die();
@@ -22,32 +23,38 @@ if (!isset($_SESSION['is_login'])) {
     include 'connections.php';
     $row = [];
     if (isset($_GET['id'])) {
-        $eid = $_GET['id'];
-
-        $sql = "SELECT
-        payroll.actual_salary,
-        payroll.basic_sal,
-        payroll.hra,
-        payroll.others,
-        payroll.provident_fund,
-        payroll.esi,
-        payroll.ptax,
-        payroll.leave_days,
-        payroll.leave_amount,
-        payroll.net_salary,
-        emp_info.emp_id,
-        emp_info.emp_name,
-        emp_info.emp_salary
-        FROM
-        payroll,
-        emp_info;";
+        if ($erole == "Admin"){
+        $sql = "SELECT 
+        payroll.actual_salary, payroll.basic_sal, payroll.hra, payroll.others, 
+        payroll.provident_fund, payroll.esi, payroll.ptax, payroll.leave_days, 
+        payroll.leave_amount, payroll.net_salary,payroll.working_days,payroll.total_days, emp_info.emp_id, emp_info.emp_name, 
+        emp_info.emp_salary 
+    FROM 
+        payroll
+    JOIN 
+        emp_info ON payroll.emp_id = emp_info.emp_id 
+    WHERE 
+        payroll.emp_id =$id";
+        } else if ($erole == "Employee"){
+            $sql = "SELECT 
+            payroll.actual_salary, payroll.basic_sal, payroll.hra, payroll.others, 
+            payroll.provident_fund, payroll.esi, payroll.ptax, payroll.leave_days, 
+            payroll.leave_amount, payroll.net_salary,payroll.working_days,payroll.total_days, emp_info.emp_id, emp_info.emp_name, 
+            emp_info.emp_salary 
+        FROM 
+            payroll
+        JOIN 
+            emp_info ON payroll.emp_id = emp_info.emp_id 
+        WHERE 
+            payroll.emp_id =$eid";
+        }
 
         $result = mysqli_query($con, $sql);
-
+  
         if ($result && mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             $actual = $row['actual_salary'];
-            $basic = $row['basic_salary'];
+            $basic = $row['basic_sal'];
             $wdays = $row['working_days'];
             $tdays = $row['total_days'];
             $hra = $row['hra'];

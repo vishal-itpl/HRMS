@@ -6,8 +6,6 @@ if (!isset($_SESSION['is_login'])) {
     header('Location:login1.php');
     die();
 }
-
-
   ?>
   <!DOCTYPE html>
   <html>

@@ -63,11 +63,13 @@
 
 <?php
 session_start(); // Initialize the session
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "hrms";
+
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -80,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = md5($_POST["password"]);
 
     // Validate credentials against the database
-    $query = "SELECT emp_role, emp_email, emp_id from emp_info WHERE emp_email='$emp_email' AND password='$password'";
+    $query = "SELECT emp_role, emp_email, emp_id, emp_name from emp_info WHERE emp_email='$emp_email' AND password='$password'";
     $result = mysqli_query($conn, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
@@ -89,8 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION["emp_role"] = $user["emp_role"];
         $_SESSION['is_login'] = "Yes";
         $_SESSION['eid'] = $user["emp_id"];
-
-           // Store user's role in session
+        // Fetch the employee name from the database
+        $_SESSION['employee_name'] = $user['emp_name'];
         // Redirect to the dashboard
         header("Location: home.php");
         exit();
@@ -101,5 +103,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     mysqli_close($conn);
 }
+
 ?>
 <?php require_once './js/js.php'; ?>
