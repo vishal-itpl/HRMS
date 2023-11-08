@@ -130,7 +130,6 @@ WHERE
                     echo "<td>" . $description . "</td>";
                     if ($erole == 'Admin') {
                     echo "<td>";
-                      echo "<button type='button' class='btn btn-primary btn-sm mr-1' data-toggle='modal' data-target='#modal-lg1'>View</button>";
                       echo "<button type='button' class='btn btn-primary btn-sm mr-1'>Approve</button>";
                       echo "<button type='button' class='btn btn-danger btn-sm mr-1'>Reject</button>";
                     }

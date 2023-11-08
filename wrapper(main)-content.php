@@ -17,7 +17,18 @@
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content-header -->
+      <?php 
+include_once("connections.php");
+$sql = "SELECT COUNT(*) AS total_employees FROM emp_info";
+$result = mysqli_query($con, $sql);
+$row = mysqli_fetch_assoc($result);
+$totalEmployees = $row['total_employees'];
 
+$lsql= "SELECT COUNT(*) AS leave_count FROM leave_application WHERE YEAR(from_date) = YEAR(CURDATE()) AND MONTH(from_date) = MONTH(CURDATE())";
+$result = mysqli_query($con, $lsql);
+$row = mysqli_fetch_assoc($result);
+$totalLeaves = $row["leave_count"];
+?>
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
@@ -27,7 +38,7 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>20</h3>
+                  <h3><?php echo $totalEmployees; ?></h3>
 
                   <p>Total Employees</p>
                 </div>
@@ -91,7 +102,7 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>15</h3>
+                  <h3><?php echo $totalLeaves; ?></h3>
 
                   <p>Leave Applications</p>
                 </div>
